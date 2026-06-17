@@ -1,0 +1,17 @@
+.DS_Store
+Thumbs.db
+desktop.ini
+*.log
+
+.env
+.env.local
+.env.*.local
+
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+node_modules/
+.netlify/
