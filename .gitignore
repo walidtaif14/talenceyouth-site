@@ -15,3 +15,9 @@ desktop.ini
 
 node_modules/
 .netlify/
+
+# Captures d'écran de debug, jamais commitées
+images/feedbackTY.jpeg
+images/feedback*
+images/debug-*
+images/screenshot-*
