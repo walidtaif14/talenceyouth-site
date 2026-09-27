@@ -310,3 +310,10 @@ button { font-family: inherit; }
   .ty-float, [style*="ty-float"] { animation: none !important; }
   html { scroll-behavior: auto; }
 }
+
+/* ============ Galerie : photo en paysage sur deux cases ============ */
+.ty-gallery-tile.is-wide { grid-column: span 2; }
+@media (max-width: 505px) {
+  .ty-gallery-tile.is-wide { grid-column: auto; }
+  .ty-gallery-tile.is-wide > div:first-child { aspect-ratio: 4/3 !important; }
+}
