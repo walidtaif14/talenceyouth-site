@@ -1,10 +1,12 @@
 (function () {
   'use strict';
 
+  const reduceMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
   /* ============ Reveal on scroll ============ */
   function setupReveal() {
     const els = document.querySelectorAll('[data-reveal]');
-    if (!els.length || !('IntersectionObserver' in window)) {
+    if (!els.length || reduceMotion || !('IntersectionObserver' in window)) {
       els.forEach(el => el.classList.add('is-visible'));
       return;
     }
@@ -23,15 +25,12 @@
   }
 
   /* ============ Animated counters ============ */
+  /* Les vrais chiffres sont écrits dans le HTML : sans JavaScript ou avec
+     « moins d'animations », ils restent affichés tels quels. */
   function setupCounters() {
     const els = document.querySelectorAll('[data-counter]');
-    if (!els.length) return;
+    if (!els.length || reduceMotion || !('IntersectionObserver' in window)) return;
     const fmt = (n) => Math.round(n).toLocaleString('fr-FR');
-    els.forEach(el => { el.textContent = fmt(0); });
-    if (!('IntersectionObserver' in window)) {
-      els.forEach(el => { el.textContent = fmt(parseFloat(el.dataset.counter)); });
-      return;
-    }
     const animate = (el) => {
       const target = parseFloat(el.dataset.counter);
       const dur = 1700;
@@ -52,22 +51,40 @@
     els.forEach(el => io.observe(el));
   }
 
+  /* ============ Animations SVG de la carte ============ */
+  function setupSvgMotion() {
+    if (!reduceMotion) return;
+    document.querySelectorAll('svg').forEach(svg => {
+      if (typeof svg.pauseAnimations === 'function') svg.pauseAnimations();
+    });
+  }
+
   /* ============ Lightbox ============ */
   function setupLightbox() {
     const box = document.getElementById('ty-lightbox');
     const image = document.getElementById('ty-lightbox-image');
     const caption = document.getElementById('ty-lightbox-caption');
-    if (!box || !image || !caption) return;
+    const closeBtn = box && box.querySelector('.ty-lightbox-close');
+    if (!box || !image || !caption || !closeBtn) return;
+
+    let lastFocus = null;
 
     const open = (src, text) => {
-      image.style.backgroundImage = "url('" + src + "')";
-      caption.textContent = text;
+      lastFocus = document.activeElement;
+      image.src = src;
+      image.alt = text || '';
+      caption.textContent = text || '';
       box.classList.add('is-open');
+      box.setAttribute('aria-hidden', 'false');
       document.body.style.overflow = 'hidden';
+      closeBtn.focus();
     };
     const close = () => {
       box.classList.remove('is-open');
+      box.setAttribute('aria-hidden', 'true');
       document.body.style.overflow = '';
+      image.removeAttribute('src');
+      if (lastFocus && typeof lastFocus.focus === 'function') lastFocus.focus();
     };
 
     document.querySelectorAll('.ty-gallery-tile').forEach(tile => {
@@ -80,7 +97,10 @@
       if (e.target === box || e.target.classList.contains('ty-lightbox-close')) close();
     });
     document.addEventListener('keydown', (e) => {
-      if (e.key === 'Escape' && box.classList.contains('is-open')) close();
+      if (!box.classList.contains('is-open')) return;
+      if (e.key === 'Escape') close();
+      /* Le seul élément actif de la fenêtre est le bouton Fermer : le focus y reste */
+      if (e.key === 'Tab') { e.preventDefault(); closeBtn.focus(); }
     });
   }
 
@@ -93,6 +113,7 @@
   function init() {
     setupReveal();
     setupCounters();
+    setupSvgMotion();
     setupLightbox();
   }
 })();
