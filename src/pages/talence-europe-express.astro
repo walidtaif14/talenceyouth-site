@@ -7,89 +7,136 @@ import teeGroupe from '../assets/photos/tee-groupe-berlin.jpg';
 import teeNdsm from '../assets/photos/tee-ndsm.jpg';
 import teeBerlinUe from '../assets/photos/tee-berlin-centre-ue.jpg';
 import teeAmsterdam from '../assets/photos/tee-amsterdam.jpg';
+
+const etapes = ['Bordeaux', 'Paris', 'Bruxelles', 'Leyde', 'Noordwijk', 'Amsterdam', 'Berlin', 'Bordeaux'];
+const activites = [
+  { t: 'Découvrir les villes', p: 'À pied et en transports locaux, en se repérant à partir de la gare.' },
+  { t: "Comprendre l'histoire de l'Europe", p: "La Neue Wache, le mémorial aux Juifs d'Europe assassinés, le Raum der Stille et le musée du Mur, à Berlin." },
+  { t: "Voir l'Europe de près", p: "La visite du centre d'information de la Commission européenne à Berlin et ses activités." },
+  { t: 'Créer', p: "Le Moco Museum, le parcours IKONO et le tag du groupe sur le mur d'expression libre du NDSM, à Amsterdam." },
+  { t: 'Vivre ensemble', p: "Les repas préparés à l'auberge, le budget du jour décidé en groupe et un bilan Youthpass à la fin." },
+];
+const resultats = [
+  { t: '7 partis, 7 rentrés', p: 'Aucun abandon, aucun souci de sécurité, aucune dépense de santé.' },
+  { t: 'Un Youthpass chacun', p: 'Le certificat européen de leurs compétences, écrit à partir de leurs propres réponses et relu par chacun.' },
+  { t: 'Savoir voyager seul', p: "Le pass n'existait que dans l'application, donc chaque trajet passait par eux. Tous savent maintenant faire un trajet international en train." },
+  { t: 'Se débrouiller sans langue commune', p: 'Quelques mots de néerlandais appris par eux-mêmes et un match de foot avec des habitants.' },
+  { t: 'Gérer les imprévus', p: "Un retour réorganisé par la compagnie ferroviaire, réglé sans frais ni retard. Deux participantes montées dans le mauvais train à Duisburg, qui ont rejoint le groupe à la gare suivante." },
+];
 ---
 <Base
   titre="Talence-Europe Express, 11 jours en train de Bordeaux à Berlin"
-  description="En août 2026, cinq jeunes de 18 à 21 ans qui n'avaient jamais voyagé sans leurs parents sont partis 11 jours en train jusqu'à Berlin avec TalenceYouth et DiscoverEU. Ce qu'ils ont fait et ce qu'ils en ont retiré."
+  description="En août 2026, cinq jeunes de 18 à 21 ans qui n'avaient jamais voyagé sans leurs parents sont partis 11 jours en train jusqu'à Berlin avec TalenceYouth et DiscoverEU. Le récit et ce qu'ils en ont retiré."
 >
-  <section class="section" aria-labelledby="titre-tee">
-    <div class="formes" aria-hidden="true">
-      <span class="forme forme--rect" style="width:min(70vw,640px);height:min(18vw,150px);right:-24vw;bottom:-30px;transform:rotate(-6deg)"></span>
-      <span class="forme forme--rond" style="width:min(30vw,260px);height:min(30vw,260px);left:-14vw;top:-6vw"></span>
-    </div>
-    <div class="conteneur deux-colonnes au-dessus">
+  <section class="ty-section ty-section--top">
+    <div class="ty-split">
       <div>
-        <h1 id="titre-tee"><span class="de-travers encre-bleue">Talence-Europe Express</span></h1>
-        <p class="chapeau" style="margin-top:24px">Cinq jeunes de 18 à 21 ans qui n'avaient jamais voyagé sans leurs parents, deux accompagnateurs, onze jours en train de Bordeaux à Berlin et pas un seul avion.</p>
+        <span class="ty-badge"><span class="dot"></span>Réalisé, mobilité DiscoverEU</span>
+        <h1 class="ty-h1">Talence-Europe Express</h1>
+        <p class="ty-lead">Cinq jeunes de 18 à 21 ans qui n'avaient jamais voyagé sans leurs parents, deux accompagnateurs, onze jours en train de Bordeaux à Berlin et pas un seul avion.</p>
+        <div class="ty-chips">
+          <span class="ty-chip">7 voyageurs</span><span class="ty-chip">{t.pays} pays</span><span class="ty-chip">0 avion</span><span class="ty-chip">DiscoverEU</span>
+        </div>
       </div>
-      <Photo src={teeGroupe} riso="bleu" prioritaire ratio="4 / 3"
-        alt="Les sept voyageurs du Talence-Europe Express sur un pont à Berlin, le château de Charlottenburg au fond"
-        legende="Berlin, août 2026, devant le château de Charlottenburg." />
-    </div>
-  </section>
-
-  <section class="section section--filet" aria-labelledby="titre-voyage">
-    <div class="conteneur deux-colonnes">
-      <h2 id="titre-voyage"><span class="de-travers">Le voyage</span></h2>
-      <dl class="faits">
-        <dt>Quand</dt><dd>Du 10 au 20 août 2026, 11 jours.</dd>
-        <dt>Qui</dt><dd>7 personnes : {t.jeunes} jeunes de 18 à 21 ans de l'agglomération bordelaise et {t.accompagnateurs} accompagnateurs.</dd>
-        <dt>Comment</dt><dd>Tout en train, avec 7 Pass Interrail DiscoverEU sur l'appli du téléphone.</dd>
-        <dt>Le trajet</dt><dd>Bordeaux, Paris, Bruxelles, Leyde, Noordwijk aux Pays-Bas, Amsterdam, Berlin, puis retour à Bordeaux. Deux sorties en plus, à Leyde et à Zaandam.</dd>
-        <dt>Le cadre</dt><dd>{t.action}, sans un euro à avancer pour les jeunes.</dd>
-      </dl>
-    </div>
-  </section>
-
-  <section class="section section--filet" aria-labelledby="titre-fait">
-    <div class="conteneur">
-      <h2 id="titre-fait"><span class="de-travers">Ce qu'ils ont fait</span></h2>
-      <div class="deux-colonnes" style="margin-top:32px">
-        <ul class="filets">
-          <li><b>Découvrir les villes</b>À pied et en transports locaux, en se repérant à partir de la gare.</li>
-          <li><b>Comprendre l'histoire de l'Europe</b>La Neue Wache, le mémorial aux Juifs d'Europe assassinés, le Raum der Stille et le musée du Mur à Berlin.</li>
-          <li><b>Voir l'Europe de près</b>Le centre d'information de la Commission européenne à Berlin et ses activités.</li>
-          <li><b>Créer</b>Le Moco Museum, le parcours IKONO et le tag du groupe sur le mur d'expression libre du NDSM, à Amsterdam.</li>
-          <li><b>Vivre ensemble</b>Les repas préparés à l'auberge, le budget de chaque jour décidé en groupe et un bilan Youthpass à la fin.</li>
-        </ul>
-        <div class="texte">
-          <h3>Un programme construit avec eux</h3>
-          <p style="margin-top:12px">Le programme a bougé à leur demande. Une participante a préparé et mené seule la journée du 14 août à Amsterdam, puis elle a fait ajouter le château de Charlottenburg à Berlin. Un participant a demandé le musée Volkswagen. Et quand deux participantes ont préféré la ville à une matinée de plage, on a suivi.</p>
-          <Photo src={teeNdsm} riso="rose" ratio="4 / 3" sizes="(min-width: 860px) 480px, 100vw" largeurs={[480, 960]}
-            alt="Trois jeunes du groupe devant le tag TALENCE YOUTH qu'ils ont peint au NDSM, à Amsterdam"
-            legende="Amsterdam, le tag du groupe au NDSM." />
+      <div style="position:relative;">
+        <div class="ty-photo-card">
+          <Photo src={teeGroupe} prioritaire alt="Les sept voyageurs du Talence-Europe Express sur un pont à Berlin, le château de Charlottenburg au fond" style="aspect-ratio:4/3;object-fit:cover;" />
+        </div>
+        <div class="ty-float-card" style="bottom:22px;left:-16px;--r:-4deg;animation:ty-float 6s ease-in-out infinite;">
+          <strong>10-20 août</strong><span>2026, en train</span>
         </div>
       </div>
     </div>
   </section>
 
-  <section class="section section--jaune" aria-labelledby="titre-retire">
-    <div class="conteneur deux-colonnes">
-      <h2 id="titre-retire"><span class="de-travers">Ce qu'ils en ont retiré</span></h2>
-      <ul class="filets">
-        <li><b>7 partis, 7 rentrés</b>Aucun abandon, aucun souci de sécurité, aucune dépense de santé.</li>
-        <li><b>Un Youthpass chacun</b>Le certificat européen de leurs compétences, écrit à partir de leurs propres réponses et relu par chacun.</li>
-        <li><b>Savoir voyager seul</b>Le pass n'existait que dans l'appli, donc chaque trajet passait par eux : enregistrer le voyage et lire les horaires. Tous savent maintenant faire un trajet international en train.</li>
-        <li><b>Se débrouiller sans langue commune</b>Quelques mots de néerlandais appris tout seuls et un match de foot avec des gens du coin.</li>
-        <li><b>Gérer les imprévus</b>Un retour réorganisé par la compagnie de train, réglé sans frais ni retard. Deux participantes montées dans le mauvais train à Duisburg, qui ont rejoint le groupe à la gare suivante.</li>
-      </ul>
+  <section class="ty-section">
+    <div class="ty-head">
+      <div>
+        <span class="ty-eyebrow" data-reveal>Le trajet</span>
+        <h2 class="ty-h2" data-reveal>De la mer du Nord à Berlin</h2>
+      </div>
+      <span class="ty-muted" data-reveal style="max-width:420px;">Tout en train, avec 7 Pass Interrail DiscoverEU dans l'application du téléphone. Deux sorties en plus, à Leyde et à Zaandam.</span>
+    </div>
+    <div class="ty-card" data-reveal>
+      <ol style="list-style:none;margin:0;padding:0;display:flex;flex-wrap:wrap;gap:10px;align-items:center;">
+        {etapes.map((e, i) => (
+          <li style="display:flex;align-items:center;gap:10px;">
+            <span class="ty-theme-chip" style="padding:10px 16px;"><span class="dot"></span>{e}</span>
+            {i < etapes.length - 1 && <span aria-hidden="true" style="color:var(--accent);font-weight:700;">→</span>}
+          </li>
+        ))}
+      </ol>
+      <dl class="ty-facts" style="margin-top:22px;">
+        <dt>Quand</dt><dd>Du 10 au 20 août 2026, 11 jours.</dd>
+        <dt>Qui</dt><dd>7 personnes : {t.jeunes} jeunes de 18 à 21 ans de l'agglomération bordelaise et {t.accompagnateurs} accompagnateurs.</dd>
+        <dt>Le cadre</dt><dd>{t.action}, sans un euro à avancer pour les jeunes.</dd>
+      </dl>
     </div>
   </section>
 
-  <section class="section" aria-labelledby="titre-photos-tee">
-    <div class="conteneur">
-      <h2 id="titre-photos-tee"><span class="de-travers">En photos</span></h2>
-      <Galerie items={[
-        { src: teeBerlinUe, legende: "Berlin, au centre d'information de la Commission européenne" },
-        { src: teeAmsterdam, legende: 'Amsterdam, Rembrandtplein' },
-      ]} />
-      <p class="texte" style="margin-top:40px">Envie de partir à ton tour ? Le prochain projet, c'est <a href="/digiminds">DigiMinds, en juillet 2027 à Bordeaux</a>.</p>
+  <section class="ty-section">
+    <div class="ty-head">
+      <div>
+        <span class="ty-eyebrow" data-reveal>Sur place</span>
+        <h2 class="ty-h2" data-reveal>Ce qu'ils ont fait</h2>
+      </div>
+    </div>
+    <div class="ty-cards">
+      {activites.map((a) => <article class="ty-card ty-point" data-reveal><h3>{a.t}</h3><p>{a.p}</p></article>)}
     </div>
   </section>
 
-  <section class="section section--filet">
-    <div class="conteneur texte">
-      <p class="legende">Projet Erasmus+ n° {t.reference}. {clauseUE.fr}</p>
+  <section class="ty-section">
+    <div class="ty-split">
+      <div class="ty-photo-card" data-reveal>
+        <Photo src={teeNdsm} alt="Trois jeunes du groupe devant le tag TALENCE YOUTH qu'ils ont peint au NDSM, à Amsterdam" style="aspect-ratio:4/3;object-fit:cover;" />
+      </div>
+      <div>
+        <span class="ty-eyebrow" data-reveal>Un programme construit avec eux</span>
+        <h2 class="ty-h2" data-reveal>Ce sont eux qui ont décidé</h2>
+        <div class="ty-text" data-reveal style="margin-top:20px;">
+          <p>Le programme a changé à leur demande. Une participante a préparé et mené seule la journée du 14 août à Amsterdam, puis elle a fait ajouter le château de Charlottenburg à Berlin. Un participant a demandé le musée Volkswagen.</p>
+          <p>Le programme s'est aussi adapté à chacun : deux participantes ont préféré une visite de la ville à une matinée de plage et deux participants ont rejoint le groupe plus tard un jour de fatigue.</p>
+        </div>
+      </div>
     </div>
+  </section>
+
+  <section class="ty-section">
+    <div class="ty-head">
+      <div>
+        <span class="ty-eyebrow" data-reveal>Le bilan</span>
+        <h2 class="ty-h2" data-reveal>Ce qu'ils en ont retiré</h2>
+      </div>
+    </div>
+    <div class="ty-cards">
+      {resultats.map((r) => <article class="ty-card ty-point" data-reveal><h3>{r.t}</h3><p>{r.p}</p></article>)}
+    </div>
+  </section>
+
+  <section class="ty-section">
+    <div class="ty-head">
+      <div>
+        <span class="ty-eyebrow" data-reveal>En photos</span>
+        <h2 class="ty-h2" data-reveal>Le voyage</h2>
+      </div>
+      <span class="ty-muted" data-reveal>Cliquez pour agrandir</span>
+    </div>
+    <Galerie items={[
+      { src: teeNdsm, legende: 'Amsterdam, le tag du groupe au NDSM', large: true },
+      { src: teeBerlinUe, legende: "Berlin, au centre d'information de la Commission européenne" },
+      { src: teeAmsterdam, legende: 'Amsterdam, Rembrandtplein' },
+    ]} />
+  </section>
+
+  <section class="ty-section">
+    <div class="ty-card-bleue" data-reveal style="display:flex;flex-wrap:wrap;gap:24px;align-items:center;justify-content:space-between;">
+      <div style="flex:1 1 380px;">
+        <h2 class="ty-h2" style="margin-bottom:10px;">Envie de partir à votre tour ?</h2>
+        <p style="margin:0;">Le prochain projet, c'est DigiMinds, du 19 au 28 juillet 2027 à Bordeaux. Les candidatures sont ouvertes.</p>
+      </div>
+      <a class="ty-btn ty-btn--clair" href="/digiminds"><span>Découvrir DigiMinds</span><span class="fleche" aria-hidden="true">→</span></a>
+    </div>
+    <p class="ty-caption" style="margin-top:28px;max-width:760px;">Projet Erasmus+ n° {t.reference}. {clauseUE.fr}</p>
   </section>
 </Base>

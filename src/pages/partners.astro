@@ -2,7 +2,7 @@
 import Base from '../layouts/Base.astro';
 import Photo from '../components/Photo.astro';
 import { asso, subventions, eurosEn, digiminds, partenaires } from '../data/site';
-import teeBerlinUe from '../assets/photos/tee-berlin-centre-ue.jpg';
+import teeGroupe from '../assets/photos/tee-groupe-berlin.jpg';
 
 const fiche = `Organisation: TalenceYouth
 Country: France (Talence, Bordeaux area, Nouvelle-Aquitaine)
@@ -16,90 +16,107 @@ Experience: KA152 coordinator (DigiMinds, 5 countries, ${digiminds.datesEn}), KA
 Target group: young people aged 18 to 30 from the Bordeaux area, including young people with fewer opportunities
 Topics: AI and disinformation, inclusion, European citizenship, sustainable mobility, mental health, audiovisual storytelling
 Working languages: English, French, Italian, Spanish, Arabic`;
+
+const projets = [
+  { badge: 'KA152, coordinator', titre: 'DigiMinds', texte: `${digiminds.datesEn} near Bordeaux. 36 people from France, Italy, Türkiye, Poland and Lithuania working on AI, fake news and critical thinking.` },
+  { badge: 'KA155 DiscoverEU Inclusion, coordinator', titre: 'Talence-Europe Express', texte: "August 2026, 11 days by train from Bordeaux to Berlin with five young people who'd never travelled without their parents. Seven left and seven came back." },
+  { badge: 'KA152, sending partner', titre: 'Act for Inclusion: Empathy on Stage', texte: 'July 2027, a youth exchange on theatre and inclusion coordinated by BİLSEM Denizli (Türkiye).' },
+  { badge: 'Earlier exchanges', titre: 'Norway, Romania, France', texte: 'Our young people took part in exchanges in Skien (Norway) in 2025, in Romania in 2025 and in Nogaret (France) with In Orbita in 2026.' },
+];
+const atouts = [
+  { t: 'A host in the Bordeaux area', p: "We're hosting DigiMinds near Bordeaux in July 2027 and we can host other exchanges in the area." },
+  { t: 'Motivated groups', p: 'Young people from the Bordeaux area, prepared before they leave and followed after they come back.' },
+  { t: 'Video', p: "Our vice-president films our projects, so the results don't stay in a drawer." },
+  { t: 'Languages', p: 'Our team works in English, French, Italian, Spanish and Arabic.' },
+];
 ---
 <Base
   lang="en"
   titre="TalenceYouth, Erasmus+ youth partner in Bordeaux, France"
   description="TalenceYouth is a youth association from Talence, next to Bordeaux, France. We coordinate and join Erasmus+ youth projects (KA152, KA155). OID E10403043. Our partner identification sheet, ready to copy."
 >
-  <section class="section" aria-labelledby="titre-partners">
-    <div class="formes" aria-hidden="true">
-      <span class="forme forme--rond" style="width:min(50vw,440px);height:min(50vw,440px);right:-14vw;top:-6vw"></span>
-    </div>
-    <div class="conteneur deux-colonnes au-dessus">
+  <section class="ty-section ty-section--top">
+    <div class="ty-split">
       <div>
-        <h1 id="titre-partners"><span class="de-travers encre-bleue">Looking for a partner in Bordeaux?</span></h1>
-        <p class="chapeau" style="margin-top:24px">We're TalenceYouth, a youth association from Talence, right next to Bordeaux. We coordinate Erasmus+ youth projects and we send groups to our partners' exchanges. We work with young people aged 18 to 30, many of them with fewer opportunities.</p>
-        <p style="margin-top:24px"><a class="bouton" href="#fiche">Copy our partner sheet</a></p>
+        <span class="ty-badge"><span class="dot"></span>OID {asso.oid}</span>
+        <h1 class="ty-h1">Looking for a partner in Bordeaux?</h1>
+        <p class="ty-lead">We're TalenceYouth, a youth association from Talence, right next to Bordeaux. We coordinate Erasmus+ youth projects and we send groups to our partners' exchanges. We work with young people aged 18 to 30, many of them with fewer opportunities.</p>
+        <div class="ty-actions">
+          <a class="ty-btn" href="#sheet"><span>Copy our partner sheet</span><span class="fleche" aria-hidden="true">→</span></a>
+          <a class="ty-btn2" href={`mailto:${asso.email}`}>Email us</a>
+        </div>
       </div>
-      <Photo src={teeBerlinUe} riso="bleu" prioritaire ratio="4 / 5" sizes="(min-width: 860px) 420px, 100vw" largeurs={[420, 840]}
-        alt="Young people from our Talence-Europe Express group with an EU flag at the European Commission information centre in Berlin"
-        legende="Berlin, August 2026: our DiscoverEU group at the European Commission information centre." />
+      <div class="ty-photo-card">
+        <Photo src={teeGroupe} prioritaire alt="Our Talence-Europe Express group on a bridge in Berlin, with Charlottenburg Palace in the background" style="aspect-ratio:4/3;object-fit:cover;" />
+      </div>
     </div>
   </section>
 
-  <section class="section section--filet" aria-labelledby="titre-facts">
-    <div class="conteneur deux-colonnes">
-      <h2 id="titre-facts"><span class="de-travers">Key facts</span></h2>
-      <dl class="faits">
-        <dt>OID</dt><dd>{asso.oid}</dd>
-        <dt>Status</dt><dd>Non-profit association under the French law of 1901, founded in March 2025. Five volunteers run it.</dd>
-        <dt>Based in</dt><dd>Talence, Bordeaux area, Nouvelle-Aquitaine, France</dd>
-        <dt>Grants won</dt><dd>{eurosEn(subventions.digiminds)} for DigiMinds (KA152, coordinator) and {eurosEn(subventions.tee)} for Talence-Europe Express (KA155 DiscoverEU Inclusion, completed in 2026)</dd>
-        <dt>Languages</dt><dd>English, French, Italian, Spanish, Arabic</dd>
-      </dl>
+  <section class="ty-section" aria-label="Key figures">
+    <div class="ty-stats" data-reveal>
+      <div><b>{eurosEn(subventions.digiminds + subventions.tee)}</b><p>in Erasmus+ grants won since 2025</p></div>
+      <div><b>2</b><p>projects coordinated</p></div>
+      <div><b>5</b><p>partner countries</p></div>
     </div>
   </section>
 
-  <section class="section section--filet" aria-labelledby="titre-done">
-    <div class="conteneur deux-colonnes">
-      <h2 id="titre-done"><span class="de-travers">What we've done</span></h2>
-      <ul class="filets">
-        <li><b>DigiMinds, KA152 youth exchange, coordinator</b>{digiminds.datesEn} near Bordeaux, 36 people from France, Italy, Türkiye, Poland and Lithuania, on AI, fake news and critical thinking.</li>
-        <li><b>Talence-Europe Express, KA155 DiscoverEU Inclusion, coordinator</b>August 2026, 11 days by train from Bordeaux to Berlin with five young people who'd never travelled without their parents. Seven left and seven came back.</li>
-        <li><b>Act for Inclusion: Empathy on Stage, KA152, sending partner</b>July 2027, a youth exchange on theatre and inclusion coordinated by BİLSEM Denizli (Türkiye).</li>
-        <li><b>Earlier exchanges</b>Our young people took part in exchanges in Skien (Norway) in 2025, in Romania in 2025 and in Nogaret (France) with In Orbita in 2026.</li>
-      </ul>
+  <section class="ty-section">
+    <div class="ty-head">
+      <div>
+        <span class="ty-eyebrow" data-reveal>Track record</span>
+        <h2 class="ty-h2" data-reveal>What we've done</h2>
+      </div>
+    </div>
+    <div class="ty-cards">
+      {projets.map((p) => (
+        <article class="ty-card" data-reveal>
+          <span class="ty-chip" style="display:inline-block;margin-bottom:12px;">{p.badge}</span>
+          <h3 class="ty-h3">{p.titre}</h3>
+          <p class="ty-text" style="margin:0;">{p.texte}</p>
+        </article>
+      ))}
     </div>
   </section>
 
-  <section class="section section--jaune" aria-labelledby="titre-bring">
-    <div class="conteneur deux-colonnes">
-      <h2 id="titre-bring"><span class="de-travers">What we bring</span></h2>
-      <ul class="filets">
-        <li><b>A host in the Bordeaux area</b>We're hosting DigiMinds near Bordeaux in July 2027 and we can host other exchanges in the area.</li>
-        <li><b>Motivated groups</b>Young people from the Bordeaux area, prepared before they leave and followed after they come back.</li>
-        <li><b>Video</b>Our vice-president films our projects, so results don't stay in a drawer.</li>
-        <li><b>Topics we work on</b>AI and disinformation, inclusion, European citizenship, sustainable mobility, mental health, audiovisual storytelling.</li>
-      </ul>
+  <section class="ty-section">
+    <div class="ty-head">
+      <div>
+        <span class="ty-eyebrow" data-reveal>Why us</span>
+        <h2 class="ty-h2" data-reveal>What we bring</h2>
+      </div>
+      <span class="ty-muted" data-reveal style="max-width:420px;">Topics: AI and disinformation, inclusion, European citizenship, sustainable mobility, mental health, audiovisual storytelling.</span>
+    </div>
+    <div class="ty-cards">
+      {atouts.map((a) => <article class="ty-card ty-point" data-reveal><h3>{a.t}</h3><p>{a.p}</p></article>)}
     </div>
   </section>
 
-  <section id="fiche" class="section section--filet" aria-labelledby="titre-fiche">
-    <div class="conteneur">
-      <h2 id="titre-fiche"><span class="de-travers">Our partner sheet</span></h2>
-      <p class="texte" style="margin-top:24px">Everything you usually ask for in a partner identification form, ready to paste into your application.</p>
-      <p><button type="button" class="bouton" data-copier="fiche-texte" hidden>Copy to clipboard</button> <span role="status" aria-live="polite" data-copie-etat></span></p>
-      <pre class="fiche" id="fiche-texte">{fiche}</pre>
+  <section id="sheet" class="ty-section">
+    <div class="ty-card" data-reveal style="border-radius:28px;padding:clamp(24px,3.5vw,44px);">
+      <span class="ty-eyebrow">Partner sheet</span>
+      <h2 class="ty-h2" style="margin-bottom:12px;">Ready to paste into your application</h2>
+      <p class="ty-muted" style="margin:0 0 20px;">Everything you usually ask for in a partner identification form.</p>
+      <p style="display:flex;flex-wrap:wrap;gap:12px;align-items:center;margin:0 0 18px;">
+        <button type="button" class="ty-btn" data-copier="fiche-texte" hidden style="border:0;cursor:pointer;font-family:inherit;"><span>Copy to clipboard</span><span class="fleche" aria-hidden="true">⧉</span></button>
+        <span role="status" aria-live="polite" data-copie-etat class="ty-muted"></span>
+      </p>
+      <pre class="ty-fiche" id="fiche-texte">{fiche}</pre>
     </div>
   </section>
 
-  <section class="section section--filet" aria-labelledby="titre-network">
-    <div class="conteneur deux-colonnes">
-      <h2 id="titre-network"><span class="de-travers">Our partners</span></h2>
-      <ul class="filets">
-        {partenaires.map((p) => (
-          <li>{p.nom}, {p.country}{p.city ? `, ${p.city}` : ''}</li>
-        ))}
-      </ul>
-    </div>
-  </section>
-
-  <section class="section section--bleu" aria-labelledby="titre-contact">
-    <div class="conteneur deux-colonnes">
-      <h2 id="titre-contact"><span class="de-travers">Let's talk</span></h2>
-      <div class="texte">
+  <section class="ty-section">
+    <div class="ty-split" style="align-items:stretch;">
+      <div class="ty-card" data-reveal>
+        <span class="ty-eyebrow">Our network</span>
+        <h2 class="ty-h2" style="margin-bottom:18px;">Our partners</h2>
+        <div class="ty-chips">
+          {partenaires.map((p) => <span class="ty-chip" style="font-size:13px;padding:7px 13px;">{p.nom}, {p.country}</span>)}
+        </div>
+      </div>
+      <div class="ty-card-bleue" data-reveal>
+        <h2 class="ty-h2" style="margin-bottom:12px;">Let's talk</h2>
         <p>Write to us at <a href={`mailto:${asso.email}`}>{asso.email}</a>, in English, French, Italian or Spanish. Tell us about your project and your timeline. We'll get back to you.</p>
+        <p style="margin:22px 0 0;"><a class="ty-btn ty-btn--clair" href={`mailto:${asso.email}?subject=Partnership%20with%20TalenceYouth`}><span>Email us</span><span class="fleche" aria-hidden="true">→</span></a></p>
       </div>
     </div>
   </section>

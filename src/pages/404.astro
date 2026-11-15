@@ -2,10 +2,13 @@
 import Base from '../layouts/Base.astro';
 ---
 <Base titre="Page introuvable, TalenceYouth" description="Cette page n'existe pas ou plus.">
-  <section class="section">
-    <div class="conteneur texte">
-      <h1><span class="de-travers encre-bleue">Page introuvable</span></h1>
-      <p class="chapeau" style="margin-top:24px">Cette page n'existe pas ou plus. Tu peux repartir de <a href="/">l'accueil</a> ou aller voir <a href="/digiminds">DigiMinds</a>.</p>
+  <section class="ty-section ty-section--top" style="min-height:50vh;">
+    <span class="ty-badge"><span class="dot"></span>Erreur 404</span>
+    <h1 class="ty-h1">Page introuvable</h1>
+    <p class="ty-lead">Cette page n'existe pas ou plus. Vous pouvez repartir de l'accueil ou découvrir DigiMinds.</p>
+    <div class="ty-actions">
+      <a class="ty-btn" href="/"><span>Retour à l'accueil</span><span class="fleche" aria-hidden="true">→</span></a>
+      <a class="ty-btn2" href="/digiminds">DigiMinds 2027</a>
     </div>
   </section>
 </Base>

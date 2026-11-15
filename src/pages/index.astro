@@ -2,17 +2,19 @@
 import Base from '../layouts/Base.astro';
 import Photo from '../components/Photo.astro';
 import Galerie from '../components/Galerie.astro';
-import { asso, digiminds, tee, actForInclusion, nombrePaysPartenaires } from '../data/site';
+import { asso, digiminds, totalSubventions, nombrePaysPartenaires } from '../data/site';
 
 import teeNdsm from '../assets/photos/tee-ndsm.jpg';
+import teeGroupe from '../assets/photos/tee-groupe-berlin.jpg';
 import teeBerlinUe from '../assets/photos/tee-berlin-centre-ue.jpg';
 import teeAmsterdam from '../assets/photos/tee-amsterdam.jpg';
-import teeGroupe from '../assets/photos/tee-groupe-berlin.jpg';
+import skien from '../assets/photos/skien.jpg';
+import nogaret from '../assets/photos/nogaret.jpg';
+import nogaret2 from '../assets/photos/nogaret-2.jpg';
+import nogaretCroix from '../assets/photos/nogaret-croix.jpg';
 import norvege1 from '../assets/photos/norvege-1.jpg';
 import norvege2 from '../assets/photos/norvege-2.jpg';
 import roumanie from '../assets/photos/roumanie.jpg';
-import nogaretCroix from '../assets/photos/nogaret-croix.jpg';
-import nogaret2 from '../assets/photos/nogaret-2.jpg';
 
 const jsonld = {
   '@context': 'https://schema.org',
@@ -25,135 +27,362 @@ const jsonld = {
   address: { '@type': 'PostalAddress', streetAddress: '16 avenue de Collegno', postalCode: '33400', addressLocality: 'Talence', addressCountry: 'FR' },
   sameAs: [asso.instagram],
 };
-
+const chip = 'background:#f1efeb;color:#4a463f;font-size:12px;font-weight:500;padding:5px 11px;border-radius:9999px;';
+const pchip = 'background:#f1efeb;font-size:13px;font-weight:500;padding:7px 13px;border-radius:9999px;';
 ---
 <Base
-  titre="TalenceYouth, ton premier voyage en Europe avec Erasmus+"
-  description="Association de Talence qui monte des projets Erasmus+ pour les 18-30 ans de l'agglomération bordelaise : échanges de jeunes, voyages en train, ateliers. DigiMinds, du 19 au 28 juillet 2027 à Bordeaux : candidatures ouvertes."
+  titre="TalenceYouth, mobilités Erasmus+ pour les jeunes de Talence et Bordeaux"
+  description="TalenceYouth conçoit et coordonne des mobilités internationales pour les jeunes de 18 à 30 ans via Erasmus+, depuis Talence et Bordeaux vers toute l'Europe. DigiMinds, du 19 au 28 juillet 2027 : candidatures ouvertes."
   jsonld={jsonld}
 >
-  <section class="section" aria-labelledby="titre-accueil">
-    <div class="formes" aria-hidden="true">
-      <span class="forme forme--rond" style="width:min(62vw,560px);height:min(62vw,560px);right:-18vw;top:-8vw"></span>
-      <span class="forme forme--rect" style="width:min(44vw,400px);height:min(16vw,140px);right:6%;bottom:-40px;transform:rotate(-8deg)"></span>
-    </div>
-    <div class="conteneur deux-colonnes au-dessus">
-      <div>
-        <h1 id="titre-accueil"><span class="de-travers encre-bleue">Ton premier voyage en Europe, on l'organise avec toi</span></h1>
-        <p class="chapeau" style="margin-top:28px">TalenceYouth est une asso de Talence qui monte des projets Erasmus+ pour les 18-30 ans de l'agglomération bordelaise : échanges de jeunes, voyages en train et ateliers, financés par l'Union européenne et sans frais de participation pour toi.</p>
-        <p style="display:flex;flex-wrap:wrap;gap:12px;margin-top:28px">
-          <a class="bouton" href="/digiminds#candidater">Candidater à DigiMinds</a>
-          <a class="bouton bouton--encre" href="/talence-europe-express">Le voyage de 2026</a>
-        </p>
+
+  <!-- ===================== HERO ===================== -->
+  <section id="accueil" style="max-width:1200px;margin:0 auto;padding:clamp(36px,5vw,72px) 24px clamp(40px,5vw,80px);">
+    <div style="display:flex;flex-wrap:wrap;gap:48px;align-items:center;">
+      <div style="flex:1 1 460px;">
+        <span class="ty-badge"><span class="dot"></span>Mobilités Erasmus+ depuis Talence</span>
+        <h1 class="ty-h1">Faire bouger la jeunesse à travers l'Europe</h1>
+        <p class="ty-lead">TalenceYouth conçoit et coordonne des mobilités internationales pour les jeunes via Erasmus+, depuis Talence vers toute l'Europe. Esprit critique face à l'IA, inclusion, mobilité durable.</p>
+        <div class="ty-actions">
+          <a class="ty-btn" href="/digiminds#candidater"><span>Candidater à une mobilité</span><span class="fleche" aria-hidden="true">→</span></a>
+          <a class="ty-btn2" href="/partners">Devenir partenaire</a>
+        </div>
       </div>
-      <div style="position:relative">
-        <Photo src={teeNdsm} riso="bleu" prioritaire ratio="4 / 3"
-          alt="Trois jeunes du Talence-Europe Express devant le tag TALENCE YOUTH qu'ils ont peint sur le mur d'expression libre du NDSM, à Amsterdam"
-          legende="Amsterdam, août 2026 : le tag du groupe sur le mur d'expression libre du NDSM." />
-        <p class="etiquette" style="position:absolute;right:-6px;top:-34px;margin:0">DigiMinds<br>19-28<br>juillet 2027</p>
+      <div style="flex:1 1 380px;position:relative;min-width:300px;">
+        <Photo src={teeNdsm} prioritaire largeurs={[600, 900, 1200]} sizes="(min-width: 1200px) 560px, (min-width: 800px) 45vw, 100vw"
+          alt="Trois jeunes du Talence-Europe Express devant le tag TALENCE YOUTH, sur le mur d'expression libre du NDSM à Amsterdam, en août 2026"
+          style="display:block;width:100%;height:auto;aspect-ratio:4/3;object-fit:cover;border-radius:24px;box-shadow:0 24px 60px rgba(0,0,0,.09);background:#e6e2db;" />
+        <div style="position:absolute;bottom:22px;left:-16px;--r:-4deg;animation:ty-float 6s ease-in-out infinite;background:#fff;border-radius:16px;padding:13px 18px;box-shadow:0 14px 34px rgba(0,0,0,.12);">
+          <div style="font-family:'Hanken Grotesk';font-weight:800;font-size:24px;line-height:1;">{nombrePaysPartenaires} pays</div>
+          <div style="font-size:12px;color:#6b665e;margin-top:3px;">partenaires actifs</div>
+        </div>
       </div>
     </div>
   </section>
 
-  <section class="section section--filet" aria-labelledby="titre-en-ce-moment">
-    <div class="conteneur deux-colonnes deux-colonnes--inverse">
-      <div>
-        <h2 id="titre-en-ce-moment">En ce moment</h2>
+  <!-- ===================== CHIFFRES ===================== -->
+  <section aria-label="Chiffres clés" style="max-width:1200px;margin:0 auto;padding:0 24px clamp(36px,5vw,64px);">
+    <div data-reveal style="background:#1A1A1A;border-radius:28px;padding:clamp(28px,4vw,48px);display:flex;flex-wrap:wrap;gap:28px;justify-content:space-between;">
+      <div style="flex:1 1 220px;">
+        <div style="font-family:'Hanken Grotesk';font-weight:800;letter-spacing:-.02em;color:#fff;font-size:clamp(2.4rem,4.5vw,3.4rem);line-height:1;">
+          <span data-counter={totalSubventions}>{totalSubventions.toLocaleString('fr-FR').replace(/ /g, ' ')}</span> <span style="color:var(--accent);">€</span>
+        </div>
+        <p style="color:#bdb9b1;font-size:15px;margin:12px 0 0;">de subventions Erasmus+ confirmées</p>
       </div>
-      <div class="texte">
-        <h3><a href="/digiminds">DigiMinds, 10 jours sur l'IA et les fake news</a></h3>
-        <p style="margin-top:12px">Du 19 au 28 juillet 2027, {digiminds.personnes} personnes de France, d'Italie, de Turquie, de Pologne et de Lituanie se retrouvent à l'auberge de jeunesse de Blanquefort, juste à côté de Bordeaux, pour comprendre comment marche l'IA, apprendre à repérer les fausses infos et tourner des vidéos ensemble. Le groupe français a {digiminds.groupeFrancais.jeunes} places et les candidatures sont ouvertes.</p>
-        <p><a class="bouton" href="/digiminds">Tout savoir et candidater</a></p>
-        <h3 style="margin-top:44px">{actForInclusion.nom}</h3>
-        <p style="margin-top:12px">En juillet 2027 aussi, un échange autour du théâtre et de l'inclusion, coordonné par {actForInclusion.coordinateur} avec des partenaires de Turquie et d'Italie. TalenceYouth y envoie un groupe de jeunes, les candidatures ouvrent bientôt sur notre <a href={asso.instagram} rel="noopener">Instagram</a>.</p>
+      <div style="width:1px;background:rgba(255,255,255,.12);align-self:stretch;"></div>
+      <div style="flex:1 1 180px;">
+        <div style="font-family:'Hanken Grotesk';font-weight:800;letter-spacing:-.02em;color:#fff;font-size:clamp(2.4rem,4.5vw,3.4rem);line-height:1;"><span data-counter="2">2</span></div>
+        <p style="color:#bdb9b1;font-size:15px;margin:12px 0 0;">projets en cours</p>
       </div>
-    </div>
-  </section>
-
-  <section class="section section--filet" aria-labelledby="titre-deja-fait">
-    <div class="conteneur">
-      <h2 id="titre-deja-fait"><span class="de-travers">Ce qu'on a déjà fait</span></h2>
-      <div class="deux-colonnes" style="margin-top:36px">
-        <ul class="filets">
-          <li>
-            <h3><a href="/talence-europe-express">{tee.nom}</a></h3>
-            <p style="margin:6px 0 4px"><strong>Août 2026, de Bordeaux à Berlin</strong></p>
-            <p style="margin:0">{tee.jeunes} jeunes de 18 à 21 ans qui n'avaient jamais voyagé sans leurs parents, {tee.accompagnateurs} accompagnateurs, {tee.jours} jours en train à travers {tee.pays} pays et pas un seul avion.</p>
-          </li>
-          <li>
-            <h3>Cultiver le Changement</h3>
-            <p style="margin:6px 0 4px"><strong>Avril 2026, Nogaret (Hérault)</strong></p>
-            <p style="margin:0">20 jeunes, 10 Français et 10 Danois, une semaine au hameau de Nogaret avec nos partenaires d'In Orbita : ateliers écologiques, débats, cuisine végétarienne et nuits sous les étoiles.</p>
-          </li>
-          <li>
-            <h3>Skien, Norvège</h3>
-            <p style="margin:6px 0 4px"><strong>Été 2025</strong></p>
-            <p style="margin:0">Une semaine d'échange chez nos partenaires Creatorium International et TYN : randonnée, accrobranche, camping et baignade dans un lac glacé.</p>
-          </li>
-        </ul>
-        <Photo src={teeGroupe} riso="rose" ratio="4 / 3"
-          alt="Les sept voyageurs du Talence-Europe Express sur un pont à Berlin, le château de Charlottenburg au fond"
-          legende="Berlin, août 2026 : les sept du Talence-Europe Express devant le château de Charlottenburg." />
+      <div style="width:1px;background:rgba(255,255,255,.12);align-self:stretch;"></div>
+      <div style="flex:1 1 180px;">
+        <div style="font-family:'Hanken Grotesk';font-weight:800;letter-spacing:-.02em;color:#fff;font-size:clamp(2.4rem,4.5vw,3.4rem);line-height:1;"><span data-counter={nombrePaysPartenaires}>{nombrePaysPartenaires}</span></div>
+        <p style="color:#bdb9b1;font-size:15px;margin:12px 0 0;">pays partenaires</p>
       </div>
     </div>
   </section>
 
-  <section class="section section--jaune" aria-labelledby="titre-hesites">
-    <div class="conteneur deux-colonnes">
+  <!-- ===================== MISSION ===================== -->
+  <section id="mission" style="max-width:880px;margin:0 auto;padding:clamp(40px,6vw,90px) 24px;text-align:center;">
+    <span data-reveal class="ty-eyebrow" style="margin-bottom:18px;">Notre mission</span>
+    <h2 data-reveal style="font-family:'Hanken Grotesk';font-weight:800;letter-spacing:-.025em;font-size:clamp(2rem,4.5vw,3.2rem);line-height:1.08;margin:0 0 24px;text-wrap:balance;">Ouvrir l'Europe à tous les jeunes</h2>
+    <p data-reveal style="font-size:clamp(1.05rem,1.6vw,1.3rem);line-height:1.65;color:#4a463f;margin:0 0 18px;text-wrap:pretty;">Nous montons des projets Erasmus+ qui mêlent éducation non formelle, engagement européen et impact local. Intelligence artificielle, désinformation, inclusion, environnement : nos thématiques préparent les jeunes aux enjeux de demain.</p>
+    <p data-reveal style="font-size:clamp(.98rem,1.4vw,1.1rem);line-height:1.6;color:#6b665e;margin:0;text-wrap:pretty;">Notre signature : une approche pair-à-pair, portée par des étudiants qui parlent le même langage que les jeunes qu'ils accompagnent. Notre audiovisuel, présent sur Instagram et au cœur de chaque projet, donne la parole à ceux qui s'autocensurent.</p>
+  </section>
+
+  <!-- ===================== ÉQUIPE ===================== -->
+  <section id="equipe" style="max-width:1200px;margin:0 auto;padding:0 24px clamp(40px,6vw,90px);">
+    <div class="ty-head">
       <div>
-        <h2 id="titre-hesites"><span class="de-travers">Tu hésites ?</span></h2>
-        <p class="chapeau" style="margin-top:24px">Beaucoup de jeunes pensent qu'Erasmus+ n'est pas pour eux. Voilà ce qu'on nous demande le plus souvent.</p>
+        <span data-reveal class="ty-eyebrow">L'équipe</span>
+        <h2 data-reveal class="ty-h2">Cinq profils, une boussole commune</h2>
       </div>
-      <div class="questions">
+      <span data-reveal style="font-size:15px;color:#6b665e;max-width:380px;">Un bureau composé d'étudiants en master et licence, multilingues et complémentaires. <a href="/association" style="color:var(--accent);font-weight:600;">Découvrir l'association →</a></span>
+    </div>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:22px;">
+      <article data-reveal class="ty-team-card">
+        <div style="display:flex;align-items:center;gap:16px;"><div class="ty-avatar is-walid" aria-hidden="true">WT</div><div><h3 class="ty-team-name">Walid Taif</h3><p class="ty-team-role">Président & fondateur</p></div></div>
+        <p class="ty-team-bio">Étudiant-entrepreneur (SNEE), Master Commerce International. Vétéran de plus de 10 projets Erasmus+, ancien participant DiscoverEU.</p>
+        <div class="ty-team-langs"><span>FR</span><span>EN</span><span>ES</span><span>IT</span><span>Darija</span></div>
+        <a class="ty-team-linkedin" href="https://www.linkedin.com/in/walidtaif" target="_blank" rel="noopener">LinkedIn <span aria-hidden="true">→</span></a>
+      </article>
+      <article data-reveal class="ty-team-card">
+        <div style="display:flex;align-items:center;gap:16px;"><div class="ty-avatar is-morad" aria-hidden="true">ML</div><div><h3 class="ty-team-name">Morad Litim</h3><p class="ty-team-role">Vice-président, responsable audiovisuel</p></div></div>
+        <p class="ty-team-bio">Master en sciences de l'éducation, futur enseignant. Œil et caméra de TalenceYouth, il transforme les projets en récits visuels.</p>
+        <div class="ty-team-langs"><span>FR</span><span>EN</span><span>IT</span><span>Darija</span></div>
+        <a class="ty-team-linkedin" href="https://www.linkedin.com/in/morad-litim-600b59313/" target="_blank" rel="noopener">LinkedIn <span aria-hidden="true">→</span></a>
+      </article>
+      <article data-reveal class="ty-team-card">
+        <div style="display:flex;align-items:center;gap:16px;"><div class="ty-avatar is-aziz" aria-hidden="true">AH</div><div><h3 class="ty-team-name">Abdel-Aziz Hamdani</h3><p class="ty-team-role">Trésorier</p></div></div>
+        <p class="ty-team-bio">Licence informatique. Boxeur amateur depuis 15 ans. Garant de la rigueur budgétaire et de la discipline collective.</p>
+        <div class="ty-team-langs"><span>FR</span><span>EN</span><span>ES</span><span>Tunisien</span></div>
+      </article>
+      <article data-reveal class="ty-team-card">
+        <div style="display:flex;align-items:center;gap:16px;"><div class="ty-avatar is-pablo" aria-hidden="true">PL</div><div><h3 class="ty-team-name">Pablo Lissa</h3><p class="ty-team-role">Secrétaire</p></div></div>
+        <p class="ty-team-bio">Master Administration publique. Expert rédaction Erasmus+ KA1, formé à WIPSEE et à la Maison Européenne des Landes.</p>
+        <div class="ty-team-langs"><span>FR</span><span>EN</span><span>ES</span><span>IT</span></div>
+        <a class="ty-team-linkedin" href="https://www.linkedin.com/in/pablolissa/" target="_blank" rel="noopener">LinkedIn <span aria-hidden="true">→</span></a>
+      </article>
+      <article data-reveal class="ty-team-card">
+        <div style="display:flex;align-items:center;gap:16px;"><div class="ty-avatar is-souhaib" aria-hidden="true">SB</div><div><h3 class="ty-team-name">Sohaïb Benchrif</h3><p class="ty-team-role">Secrétaire adjoint, coordination</p></div></div>
+        <p class="ty-team-bio">Polyvalent et multilingue. Coordination, communication et accompagnement des candidats aux mobilités.</p>
+        <div class="ty-team-langs"><span>FR</span><span>EN</span><span>ES</span><span>Darija</span></div>
+        <a class="ty-team-linkedin" href="https://www.linkedin.com/in/sohaib-benchrif-68494b383/" target="_blank" rel="noopener">LinkedIn <span aria-hidden="true">→</span></a>
+      </article>
+    </div>
+  </section>
+
+  <!-- ===================== PROJETS EN COURS ===================== -->
+  <section id="projets" style="max-width:1200px;margin:0 auto;padding:0 24px clamp(40px,6vw,90px);">
+    <div class="ty-head">
+      <h2 data-reveal class="ty-h2">Nos projets en cours</h2>
+      <span data-reveal style="font-size:15px;color:#6b665e;">2 projets confirmés par les agences Erasmus+</span>
+    </div>
+    <div style="display:flex;flex-wrap:wrap;gap:26px;">
+
+      <article data-reveal style="flex:1 1 380px;background:#fff;border-radius:20px;overflow:hidden;box-shadow:0 8px 30px rgba(0,0,0,.06);display:flex;flex-direction:column;">
+        <div style="aspect-ratio:16/9;position:relative;background:linear-gradient(135deg,#0B1E5E 0%,#1B4DE4 55%,#5B7CFF 100%);overflow:hidden;">
+          <svg viewBox="0 0 400 225" preserveAspectRatio="xMidYMid slice" aria-hidden="true" style="position:absolute;inset:0;width:100%;height:100%;opacity:.5;">
+            <defs><pattern id="dm-grid" x="0" y="0" width="32" height="32" patternUnits="userSpaceOnUse"><path d="M 32 0 L 0 0 0 32" fill="none" stroke="rgba(255,255,255,.18)" stroke-width="1"/></pattern></defs>
+            <rect width="400" height="225" fill="url(#dm-grid)"/>
+            <g stroke="rgba(255,255,255,.55)" stroke-width="1.2" fill="none">
+              <circle cx="80" cy="60" r="4" fill="#fff"/><circle cx="180" cy="40" r="4" fill="#fff"/><circle cx="290" cy="80" r="4" fill="#fff"/><circle cx="340" cy="160" r="4" fill="#fff"/><circle cx="120" cy="170" r="4" fill="#fff"/><circle cx="230" cy="135" r="6" fill="#fff"/>
+              <line x1="80" y1="60" x2="230" y2="135"/><line x1="180" y1="40" x2="230" y2="135"/><line x1="290" y1="80" x2="230" y2="135"/><line x1="340" y1="160" x2="230" y2="135"/><line x1="120" y1="170" x2="230" y2="135"/><line x1="80" y1="60" x2="180" y2="40"/><line x1="290" y1="80" x2="340" y2="160"/>
+            </g>
+          </svg>
+          <div style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;">
+            <svg viewBox="0 0 64 64" width="72" height="72" aria-hidden="true" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" style="filter:drop-shadow(0 4px 16px rgba(0,0,0,.3));">
+              <path d="M32 10c-9 0-16 6.5-16 15 0 5 2.5 9.4 6.5 12.2v6.3c0 1.6 1.3 2.9 2.9 2.9h13.2c1.6 0 2.9-1.3 2.9-2.9v-6.3C45.5 34.4 48 30 48 25c0-8.5-7-15-16-15z"/>
+              <path d="M26 28h12M24 24c0-3 2-5 4-5M40 24c0-3-2-5-4-5M28 33v4M36 33v4"/><path d="M26 52h12"/>
+            </svg>
+          </div>
+          <span style="position:absolute;top:16px;left:16px;background:#fff;color:var(--accent);font-size:12px;font-weight:600;padding:6px 12px;border-radius:9999px;">KA152, Échange de jeunes</span>
+        </div>
+        <div style="padding:26px 26px 28px;display:flex;flex-direction:column;flex:1;">
+          <h3 class="ty-h3">DigiMinds, esprit critique face à l'IA</h3>
+          <p style="font-size:15px;line-height:1.6;color:#4a463f;margin:0 0 18px;">{digiminds.personnes} participants de France, d'Italie, de Turquie, de Pologne et de Lituanie se retrouvent à Bordeaux pendant {digiminds.jours} jours pour décrypter l'intelligence artificielle et la désinformation. Du fact-checking aux ateliers de création, l'objectif : transformer les consommateurs passifs en citoyens numériques actifs.</p>
+          <div style="display:flex;flex-wrap:wrap;gap:8px;margin-bottom:22px;">
+            <span style={chip}>5 pays</span><span style={chip}>10 jours</span><span style={chip}>36 participants</span><span style={chip}>Erasmus+</span>
+          </div>
+          <div style="margin-top:auto;display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;">
+            <span style="font-size:14px;font-weight:600;color:#6b665e;">Du 19 au 28 juillet 2027, Bordeaux</span>
+            <a href="/digiminds" style="text-decoration:none;display:inline-flex;align-items:center;gap:7px;color:var(--accent);font-weight:600;font-size:15px;">Tout savoir et candidater <span aria-hidden="true">→</span></a>
+          </div>
+        </div>
+      </article>
+
+      <article data-reveal style="flex:1 1 380px;background:#fff;border-radius:20px;overflow:hidden;box-shadow:0 8px 30px rgba(0,0,0,.06);display:flex;flex-direction:column;">
+        <div style="aspect-ratio:16/9;position:relative;background:linear-gradient(135deg,#4A2178 0%,#8E3FA8 55%,#E07AA6 100%);overflow:hidden;">
+          <svg viewBox="0 0 400 225" preserveAspectRatio="xMidYMid slice" aria-hidden="true" style="position:absolute;inset:0;width:100%;height:100%;">
+            <g fill="rgba(255,255,255,.10)"><path d="M0 0h72c-9 60-9 150 0 225H0z"/><path d="M400 0h-72c9 60 9 150 0 225h72z"/></g>
+            <g stroke="rgba(255,255,255,.22)" stroke-width="1.2" fill="none"><path d="M22 0c-5 70-5 150 0 225M46 0c-6 70-6 150 0 225"/><path d="M378 0c5 70 5 150 0 225M354 0c6 70 6 150 0 225"/><path d="M96 196h208"/></g>
+            <circle cx="200" cy="18" r="70" fill="rgba(255,255,255,.08)"/>
+          </svg>
+          <div style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;">
+            <svg viewBox="0 0 96 64" width="150" height="100" aria-hidden="true" fill="none" stroke="#fff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" style="filter:drop-shadow(0 4px 16px rgba(0,0,0,.25));">
+              <path d="M12 10c10-4 24-4 34 0v18c0 12-8 20-17 20S12 40 12 28z" fill="rgba(255,255,255,.14)"/><path d="M20 22c2-2 5-2 7 0M31 22c2-2 5-2 7 0M22 33c4 4 10 4 14 0"/>
+              <path d="M50 16c10-4 24-4 34 0v18c0 12-8 20-17 20S50 46 50 34z" fill="rgba(255,255,255,.26)"/><path d="M58 29c2 2 5 2 7 0M69 29c2 2 5 2 7 0M60 44c4-4 10-4 14 0"/>
+            </svg>
+          </div>
+          <span style="position:absolute;top:16px;left:16px;background:#fff;color:#8E3FA8;font-size:12px;font-weight:600;padding:6px 12px;border-radius:9999px;">KA152, Échange de jeunes</span>
+        </div>
+        <div style="padding:26px 26px 28px;display:flex;flex-direction:column;flex:1;">
+          <h3 class="ty-h3">Act for Inclusion: Empathy on Stage</h3>
+          <p style="font-size:15px;line-height:1.6;color:#4a463f;margin:0 0 18px;">Un échange de jeunes autour du théâtre et de l'inclusion, coordonné par BİLSEM Denizli (Turquie) avec des partenaires de Turquie et d'Italie. TalenceYouth y envoie un groupe de jeunes. Des ateliers pour apprendre à se mettre à la place de l'autre, et une représentation publique montée ensemble.</p>
+          <div style="display:flex;flex-wrap:wrap;gap:8px;margin-bottom:22px;">
+            <span style={chip}>3 pays</span><span style={chip}>Théâtre</span><span style={chip}>Inclusion</span><span style={chip}>Erasmus+</span>
+          </div>
+          <div style="margin-top:auto;display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;">
+            <span style="font-size:14px;font-weight:600;color:#6b665e;">Juillet 2027</span>
+            <span style="display:inline-flex;align-items:center;gap:7px;color:#6b665e;font-weight:600;font-size:15px;">Candidatures bientôt</span>
+          </div>
+        </div>
+      </article>
+    </div>
+  </section>
+
+  <!-- ===================== PROJETS RÉALISÉS ===================== -->
+  <section id="projets-passes" style="max-width:1200px;margin:0 auto;padding:0 24px clamp(40px,6vw,90px);">
+    <div class="ty-head">
+      <div>
+        <span data-reveal class="ty-eyebrow">Ils l'ont fait</span>
+        <h2 data-reveal class="ty-h2">Nos mobilités réalisées</h2>
+      </div>
+      <span data-reveal style="font-size:15px;color:#6b665e;">Nos jeunes ont déjà parcouru l'Europe</span>
+    </div>
+    <div style="display:flex;flex-wrap:wrap;gap:26px;">
+      {[
+        { photo: teeGroupe, alt: 'Les sept voyageurs du Talence-Europe Express sur un pont à Berlin, le château de Charlottenburg au fond', badge: 'Réalisé, mobilité DiscoverEU', titre: 'Talence-Europe Express', texte: "Cinq jeunes de 18 à 21 ans qui n'avaient jamais voyagé sans leurs parents, et deux accompagnateurs. Onze jours en train, de la mer du Nord à Berlin, à travers quatre pays et sans un seul avion. Le programme, ils l'ont construit avec nous.", chips: ['7 voyageurs', '4 pays', '0 avion', 'DiscoverEU'], quand: 'Août 2026, Noordwijk, Amsterdam, Berlin', lien: '/talence-europe-express' },
+        { photo: skien, alt: 'Échange de jeunes à Skien, en Norvège, été 2025', badge: 'Réalisé, échange de jeunes', titre: 'Skien, Norvège, aventure en pleine nature', texte: "Une semaine d'échange Erasmus+ à Skien, accueillis par nos partenaires Creatorium International et TYN. Randonnée, accrobranche, camping sous les étoiles, baignade dans un lac glacé. L'Europe vécue de l'intérieur.", chips: ['Nature', 'Plein air', 'Mobilité internationale'], quand: 'Été 2025, Skien (Norvège)' },
+        { photo: nogaret, alt: "Échange franco-danois Cultiver le Changement à Nogaret, dans l'Hérault, avril 2026", badge: 'Réalisé, échange franco-danois', titre: 'Cultiver le Changement, Nogaret', texte: "20 jeunes, 10 Français et 10 Danois, réunis pendant une semaine au hameau de Nogaret (Hérault) avec nos partenaires d'In Orbita. Au programme : ateliers écologiques, débats interculturels, cuisine végétarienne, nuits sous les étoiles, et la preuve que la jeunesse européenne a des choses à se dire.", chips: ['20 jeunes', 'France · Danemark', 'Durabilité', 'In Orbita'], quand: 'Avril 2026, Nogaret (Hérault)' },
+      ].map((p) => (
+        <article data-reveal style="flex:1 1 300px;background:#fff;border-radius:20px;overflow:hidden;box-shadow:0 8px 30px rgba(0,0,0,.06);display:flex;flex-direction:column;">
+          <div style="aspect-ratio:16/9;position:relative;background:#e6e2db;">
+            <Photo src={p.photo} alt={p.alt} classe="ty-photo" largeurs={[480, 800, 1000]} sizes="(min-width: 1200px) 380px, (min-width: 700px) 50vw, 100vw" />
+            <span style="position:absolute;top:16px;left:16px;background:#2E7D6B;color:#fff;font-size:12px;font-weight:600;padding:6px 12px;border-radius:9999px;">{p.badge}</span>
+          </div>
+          <div style="padding:26px 26px 28px;display:flex;flex-direction:column;flex:1;">
+            <h3 class="ty-h3">{p.titre}</h3>
+            <p style="font-size:15px;line-height:1.6;color:#4a463f;margin:0 0 18px;">{p.texte}</p>
+            <div style="display:flex;flex-wrap:wrap;gap:8px;margin-bottom:22px;">{p.chips.map((c) => <span style={chip}>{c}</span>)}</div>
+            <div style="margin-top:auto;display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;">
+              <span style="font-size:14px;font-weight:600;color:#6b665e;">{p.quand}</span>
+              {p.lien && <a href={p.lien} style="text-decoration:none;display:inline-flex;align-items:center;gap:7px;color:var(--accent);font-weight:600;font-size:15px;">Lire le récit <span aria-hidden="true">→</span></a>}
+            </div>
+          </div>
+        </article>
+      ))}
+    </div>
+  </section>
+
+  <!-- ===================== VOUS HÉSITEZ ? ===================== -->
+  <section id="questions" style="max-width:1200px;margin:0 auto;padding:0 24px clamp(40px,6vw,90px);">
+    <div style="display:flex;flex-wrap:wrap;gap:40px;align-items:flex-start;">
+      <div style="flex:1 1 300px;">
+        <span data-reveal class="ty-eyebrow">Questions fréquentes</span>
+        <h2 data-reveal class="ty-h2">Vous hésitez ?</h2>
+        <p data-reveal style="font-size:1.05rem;line-height:1.6;color:#4a463f;margin:18px 0 0;max-width:420px;">Beaucoup de jeunes pensent qu'Erasmus+ n'est pas pour eux. Voici les questions qu'on nous pose le plus souvent.</p>
+      </div>
+      <div class="ty-faq" style="flex:1.4 1 420px;">
         <details>
           <summary>Je n'ai jamais voyagé sans mes parents</summary>
-          <div><p>C'est justement pour ça qu'on existe. En 2026 on est partis en train jusqu'à Berlin avec cinq jeunes qui n'étaient jamais partis seuls, les sept sont rentrés avec des souvenirs et un Youthpass (le certificat européen qui montre ce que tu as appris). Avant chaque départ il y a une réunion de préparation et c'est là que tu peux dire que c'est ta première fois.</p></div>
+          <div><p>C'est justement pour ça que l'association existe. En 2026, cinq jeunes qui n'étaient jamais partis seuls ont fait 11 jours en train jusqu'à Berlin avec nous et les sept voyageurs sont rentrés avec des souvenirs et un Youthpass (le certificat européen qui reconnaît ce que vous avez appris). Avant chaque départ il y a une réunion de préparation et c'est le moment de dire que c'est votre première fois.</p></div>
         </details>
         <details>
           <summary>Je parle mal anglais</summary>
-          <div><p>Pas besoin d'être bilingue : pendant les échanges on parle un anglais simple et on s'aide entre nous. Dans l'équipe on parle aussi français, italien, espagnol et arabe, donc tu ne restes jamais bloqué.</p></div>
+          <div><p>Pas besoin d'être bilingue : pendant les échanges on parle un anglais simple et on s'entraide. Dans l'équipe on parle aussi français, italien, espagnol et arabe, vous ne resterez jamais bloqué.</p></div>
         </details>
         <details>
-          <summary>Je n'ai pas d'argent</summary>
-          <div><p>Les projets sont payés par Erasmus+, le programme de l'Union européenne. Pour DigiMinds il n'y a pas de frais de participation : l'auberge, les repas et les activités sont pris en charge, l'adhésion à l'asso est gratuite et seuls tes achats perso restent pour toi.</p></div>
+          <summary>Je n'ai pas les moyens</summary>
+          <div><p>Les projets sont financés par Erasmus+, le programme de l'Union européenne. Pour DigiMinds il n'y a pas de frais de participation : l'auberge, les repas et les activités sont pris en charge, l'adhésion à l'association est gratuite et seuls vos achats personnels restent à votre charge.</p></div>
         </details>
         <details>
           <summary>Je n'y connais rien en IA</summary>
-          <div><p>On ne cherche pas des codeurs mais des gens curieux. Tu apprends en faisant, avec des jeux, des débats, des ateliers et des vidéos.</p></div>
+          <div><p>On ne cherche pas des codeurs mais des personnes curieuses. On apprend en faisant, avec des jeux, des débats, des ateliers et des vidéos.</p></div>
         </details>
         <details>
           <summary>Je suis parent et j'ai des questions</summary>
-          <div><p>Un chef de groupe de l'asso accompagne le groupe français pendant tout l'échange. Pour DigiMinds les jeunes dorment à l'auberge de jeunesse HI de Blanquefort, dans des chambres de 3 ou 4 avec salle de bain, filles et garçons séparés. Écrivez-nous à <a href={`mailto:${asso.email}`}>{asso.email}</a> et on vous répond.</p></div>
+          <div><p>Un chef de groupe de l'association accompagne le groupe français pendant tout l'échange. Pour DigiMinds les jeunes dorment à l'auberge de jeunesse HI de Blanquefort, dans des chambres de 3 ou 4 avec salle de bain, filles et garçons séparés. Écrivez-nous à <a href={`mailto:${asso.email}`}>{asso.email}</a>, on vous répond.</p></div>
         </details>
       </div>
     </div>
   </section>
 
-  <section class="section" aria-labelledby="titre-photos">
-    <div class="conteneur">
-      <h2 id="titre-photos"><span class="de-travers">Les photos</span></h2>
-      <Galerie items={[
-        { src: teeBerlinUe, legende: "Berlin, 2026, au centre d'information de la Commission européenne" },
-        { src: teeAmsterdam, legende: 'Amsterdam, 2026, Rembrandtplein' },
-        { src: nogaretCroix, legende: 'Nogaret (Hérault), avril 2026' },
-        { src: nogaret2, legende: 'Nogaret, avril 2026, Cultiver le Changement' },
-        { src: norvege1, legende: 'Norvège, 2025' },
-        { src: norvege2, legende: 'Norvège, 2025' },
-        { src: roumanie, legende: 'Roumanie, 2025' },
-      ]} />
+  <!-- ===================== THÉMATIQUES ===================== -->
+  <section id="thematiques" style="max-width:1200px;margin:0 auto;padding:0 24px clamp(40px,6vw,90px);">
+    <div style="text-align:center;margin-bottom:32px;">
+      <span data-reveal class="ty-eyebrow">Nos thématiques</span>
+      <h2 data-reveal class="ty-h2" style="margin:0 0 14px;">Les sujets qui font bouger les jeunes</h2>
+      <p data-reveal style="font-size:1.05rem;color:#4a463f;margin:0;">Six axes que nous explorons à travers les projets Erasmus+ et l'audiovisuel.</p>
+    </div>
+    <div data-reveal style="display:flex;flex-wrap:wrap;gap:12px;justify-content:center;">
+      {['Intelligence artificielle et désinformation', 'Inclusion et mobilité solidaire', 'Citoyenneté européenne', 'Mobilité durable', 'Santé mentale', 'Audiovisuel engagé'].map((t) => (
+        <span class="ty-theme-chip"><span class="dot"></span>{t}</span>
+      ))}
     </div>
   </section>
 
-  <section class="section section--filet" aria-labelledby="titre-rejoindre">
-    <div class="conteneur deux-colonnes">
+  <!-- ===================== PARTENAIRES / CARTE ===================== -->
+  <section id="partenaires" style="max-width:1200px;margin:0 auto;padding:0 24px clamp(40px,6vw,90px);">
+    <div data-reveal style="background:#fff;border-radius:28px;box-shadow:0 8px 30px rgba(0,0,0,.06);padding:clamp(24px,3.5vw,44px);display:flex;flex-wrap:wrap;gap:40px;align-items:center;">
+      <div style="flex:1 1 320px;">
+        <span class="ty-eyebrow" style="margin-bottom:16px;">Nos partenaires</span>
+        <h2 class="ty-h2" style="margin:0 0 18px;">Des partenaires dans {nombrePaysPartenaires} pays</h2>
+        <p style="font-size:15px;line-height:1.6;color:#4a463f;margin:0 0 22px;max-width:380px;">De la Lituanie à la Turquie, nous construisons des projets avec des associations européennes qui partagent nos valeurs d'éducation non formelle et d'inclusion.</p>
+        <div style="display:flex;flex-wrap:wrap;gap:8px;margin-bottom:28px;">
+          {['France, TalenceYouth', 'Italie, SINGA', 'Turquie, Antalya Erasmus Sports Club', 'Pologne, ŻYJ KOLOROWO!', 'Lituanie, Linkuva Youth Centre', 'Turquie, BİLSEM Denizli', 'Turquie, Yunus Emre Gençlik Merkezi', "Italie, L'isola che c'è"].map((n) => <span style={pchip}>{n}</span>)}
+        </div>
+        <a class="ty-btn" href="/partners" hreflang="en"><span>Devenir partenaire</span><span class="fleche" aria-hidden="true">→</span></a>
+      </div>
+      <div style="flex:1 1 380px;position:relative;min-height:380px;border-radius:20px;background:#f6f4f1;border:1px solid #ece9e4;overflow:hidden;">
+        <svg viewBox="0 0 700 500" preserveAspectRatio="xMidYMid meet" role="img" aria-label="Carte d'Europe avec les 5 pays partenaires : France, Italie, Pologne, Lituanie et Turquie" style="position:absolute;inset:0;width:100%;height:100%;display:block;">
+          <g fill="#e0dbcd" stroke="#bdb4a2" stroke-width="1.4" stroke-linejoin="round" stroke-linecap="round">
+            <path d="M 200,170 L 218,150 L 240,158 L 245,185 L 232,215 L 215,225 L 198,212 L 192,190 Z"/>
+            <path d="M 168,200 L 188,205 L 186,228 L 168,228 L 160,215 Z"/>
+            <path d="M 370,70 L 412,58 L 432,90 L 442,135 L 428,180 L 408,215 L 385,200 L 365,165 L 352,120 L 358,82 Z"/>
+            <path d="M 198,315 L 228,300 L 268,302 L 285,328 L 275,358 L 235,370 L 202,360 L 188,335 Z"/>
+            <path d="M 258,275 L 282,260 L 305,250 L 330,238 L 360,232 L 392,228 L 422,222 L 450,218 L 480,212 L 510,206 L 532,225 L 538,255 L 528,280 L 510,300 L 478,308 L 442,312 L 410,316 L 382,320 L 352,322 L 322,328 L 295,328 L 272,318 L 258,300 Z"/>
+            <path d="M 360,322 L 380,318 L 398,345 L 402,385 L 394,420 L 380,442 L 372,422 L 380,398 L 366,378 L 362,348 Z"/>
+            <path d="M 370,455 L 396,460 L 388,472 L 370,470 Z"/>
+            <path d="M 340,398 L 354,395 L 356,418 L 342,420 Z"/>
+            <path d="M 410,325 L 460,328 L 480,358 L 472,392 L 442,410 L 422,398 L 408,372 Z"/>
+            <path d="M 442,415 L 472,418 L 478,442 L 460,455 L 442,442 Z"/>
+            <path d="M 500,375 L 558,372 L 605,378 L 628,398 L 618,422 L 580,430 L 538,428 L 508,418 L 495,398 Z"/>
+          </g>
+          <g>
+            {[
+              { x: 295, y: 290, nom: 'France', w: 52, d: '0s' },
+              { x: 508, y: 220, nom: 'Lituanie', w: 60, d: '.3s' },
+              { x: 470, y: 255, nom: 'Pologne', w: 56, d: '.6s' },
+              { x: 385, y: 378, nom: 'Italie', w: 44, d: '.9s' },
+              { x: 562, y: 400, nom: 'Turquie', w: 56, d: '1.2s' },
+            ].map((m) => (
+              <g transform={`translate(${m.x},${m.y})`}>
+                <circle r="18" fill="#1B4DE4" opacity=".18"><animate attributeName="r" values="9;22;9" dur="2.4s" begin={m.d} repeatCount="indefinite"/><animate attributeName="opacity" values=".35;0;.35" dur="2.4s" begin={m.d} repeatCount="indefinite"/></circle>
+                <circle r="7" fill="#1B4DE4"/>
+                <g transform="translate(0,-16)">
+                  <rect x={-m.w / 2} y="-12" width={m.w} height="18" rx="9" fill="#fff" stroke="#ece9e4" stroke-width="1"/>
+                  <text x="0" y="0" text-anchor="middle" font-family="Inter, sans-serif" font-size="11" font-weight="600" fill="#1A1A1A">{m.nom}</text>
+                </g>
+              </g>
+            ))}
+          </g>
+        </svg>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== GALERIE ===================== -->
+  <section id="vecu" style="max-width:1200px;margin:0 auto;padding:0 24px clamp(40px,6vw,90px);">
+    <div class="ty-head">
       <div>
-        <h2 id="titre-rejoindre"><span class="de-travers">Rejoindre l'asso</span></h2>
+        <span data-reveal class="ty-eyebrow">Ils l'ont vécu</span>
+        <h2 data-reveal class="ty-h2">Des projets, des rencontres, des souvenirs</h2>
       </div>
-      <div class="texte">
-        <p>L'adhésion est gratuite et ouverte à tous les 18-30 ans, étudiants ou non, avec ou sans diplôme. Tu peux aussi donner un coup de main sur un projet sans adhérer.</p>
-        <p><a class="bouton" href={asso.formulaireAdhesion} rel="noopener">Rejoindre TalenceYouth</a></p>
-        <p style="margin-top:36px">On travaille avec des associations de {nombrePaysPartenaires} pays : la France, l'Italie, la Turquie, la Pologne et la Lituanie. Tu es une organisation et tu cherches un partenaire à Bordeaux ? <a href="/partners" hreflang="en">Read our page for partners</a>.</p>
-      </div>
+      <span data-reveal style="font-size:14px;color:#6b665e;">Cliquez pour agrandir</span>
+    </div>
+    <Galerie items={[
+      { src: nogaretCroix, legende: 'Nogaret (Hérault), avril 2026', large: true },
+      { src: teeBerlinUe, legende: "Berlin, 2026, centre d'information de la Commission européenne" },
+      { src: teeAmsterdam, legende: 'Amsterdam, 2026, Rembrandtplein' },
+      { src: norvege1, legende: 'Norvège, 2025, environnement' },
+      { src: norvege2, legende: 'Norvège, 2025, partage' },
+      { src: roumanie, legende: 'Roumanie, 2025, mobilité européenne' },
+      { src: nogaret2, legende: 'Nogaret, 2026, Cultiver le Changement' },
+      { src: teeGroupe, legende: 'Berlin, 2026, les sept du Talence-Europe Express' },
+      { src: skien, legende: 'Skien (Norvège), été 2025' },
+    ]} />
+  </section>
+
+  <!-- ===================== CANDIDATER ===================== -->
+  <section id="candidater" style="max-width:1200px;margin:0 auto;padding:0 24px clamp(40px,6vw,90px);">
+    <div style="text-align:center;margin-bottom:40px;">
+      <h2 data-reveal style="font-family:'Hanken Grotesk';font-weight:800;letter-spacing:-.025em;font-size:clamp(2rem,4.5vw,3.2rem);margin:0 0 14px;">Rejoignez l'aventure</h2>
+      <p data-reveal style="font-size:1.1rem;color:#4a463f;margin:0 0 8px;">Deux façons de prendre part à TalenceYouth. Ouvert à tous les 18-30 ans, étudiants ou non, avec ou sans diplôme.</p>
+      <p data-reveal style="font-size:.95rem;color:#6b665e;margin:0;">L'adhésion est gratuite. Le bénévolat ponctuel est possible sans adhésion.</p>
+    </div>
+    <div style="display:flex;flex-wrap:wrap;gap:26px;">
+      <article data-reveal style="flex:1 1 320px;background:#fff;border-radius:24px;box-shadow:0 8px 30px rgba(0,0,0,.06);padding:clamp(28px,3.5vw,44px);display:flex;flex-direction:column;">
+        <span aria-hidden="true" style="width:48px;height:48px;border-radius:14px;background:#f1efeb;display:flex;align-items:center;justify-content:center;font-size:22px;margin-bottom:20px;">✺</span>
+        <h3 style="font-family:'Hanken Grotesk';font-weight:800;letter-spacing:-.015em;font-size:1.5rem;margin:0 0 12px;">Rejoindre l'association</h3>
+        <p style="font-size:15px;line-height:1.6;color:#4a463f;margin:0 0 28px;flex:1;">Devenez bénévole, montez des projets et faites vivre la dynamique européenne depuis Talence. Adhésion gratuite.</p>
+        <a class="ty-btn" href={asso.formulaireAdhesion} target="_blank" rel="noopener" style="justify-content:space-between;"><span>Rejoindre l'association</span><span class="fleche" aria-hidden="true">→</span></a>
+      </article>
+      <article data-reveal style="flex:1 1 320px;background:var(--accent);border-radius:24px;box-shadow:0 16px 40px rgba(27,77,228,.22);padding:clamp(28px,3.5vw,44px);display:flex;flex-direction:column;color:#fff;">
+        <span aria-hidden="true" style="width:48px;height:48px;border-radius:14px;background:rgba(255,255,255,.15);display:flex;align-items:center;justify-content:center;font-size:22px;margin-bottom:20px;">✈</span>
+        <h3 style="font-family:'Hanken Grotesk';font-weight:800;letter-spacing:-.015em;font-size:1.5rem;margin:0 0 12px;">Partir en mobilité Erasmus+</h3>
+        <p style="font-size:15px;line-height:1.6;color:rgba(255,255,255,.9);margin:0 0 24px;flex:1;">Les candidatures sont ouvertes pour DigiMinds. Hébergement, repas et activités pris en charge par Erasmus+.</p>
+        <div style="display:flex;flex-direction:column;gap:12px;">
+          <a href="/digiminds#candidater" style="text-decoration:none;display:inline-flex;align-items:center;justify-content:space-between;gap:12px;background:#fff;color:#1A1A1A;font-weight:600;font-size:15px;padding:8px 8px 8px 20px;border-radius:9999px;">
+            <span style="display:flex;flex-direction:column;line-height:1.2;text-align:left;"><span>DigiMinds</span><span style="font-size:12px;font-weight:500;color:#6b665e;">Du 19 au 28 juillet 2027, KA152</span></span>
+            <span aria-hidden="true" style="width:34px;height:34px;border-radius:50%;background:var(--accent);color:#fff;display:flex;align-items:center;justify-content:center;font-size:16px;flex-shrink:0;">→</span>
+          </a>
+          <div style="display:inline-flex;align-items:center;justify-content:space-between;gap:12px;background:rgba(255,255,255,.12);color:#fff;font-weight:600;font-size:15px;padding:14px 20px;border-radius:9999px;border:1px solid rgba(255,255,255,.25);">
+            <span style="display:flex;flex-direction:column;line-height:1.2;text-align:left;"><span>Act for Inclusion</span><span style="font-size:12px;font-weight:500;color:rgba(255,255,255,.88);">Juillet 2027, KA152</span></span>
+            <span style="font-size:12px;font-weight:600;color:rgba(255,255,255,.88);white-space:nowrap;">Bientôt</span>
+          </div>
+        </div>
+      </article>
     </div>
   </section>
 </Base>
