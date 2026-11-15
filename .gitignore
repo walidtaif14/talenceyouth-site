@@ -21,3 +21,7 @@ images/feedbackTY.jpeg
 images/feedback*
 images/debug-*
 images/screenshot-*
+
+node_modules/
+dist/
+.astro/

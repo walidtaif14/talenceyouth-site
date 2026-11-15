@@ -1,5 +1,9 @@
 [build]
-  publish = "."
+  command = "npm run build"
+  publish = "dist"
+
+[build.environment]
+  NODE_VERSION = "24"
 
 [[headers]]
   for = "/*"
@@ -9,22 +13,18 @@
     Referrer-Policy = "strict-origin-when-cross-origin"
     Permissions-Policy = "geolocation=(), camera=(), microphone=()"
 
+# Fichiers produits par Astro : leur nom change à chaque modification
 [[headers]]
-  for = "/images/*"
+  for = "/_astro/*"
   [headers.values]
     Cache-Control = "public, max-age=31536000, immutable"
-
-[[headers]]
-  for = "/styles.css"
-  [headers.values]
-    Cache-Control = "public, max-age=3600, must-revalidate"
-
-[[headers]]
-  for = "/script.js"
-  [headers.values]
-    Cache-Control = "public, max-age=3600, must-revalidate"
 
 [[headers]]
   for = "/fonts/*"
   [headers.values]
     Cache-Control = "public, max-age=31536000, immutable"
+
+[[headers]]
+  for = "/images/*"
+  [headers.values]
+    Cache-Control = "public, max-age=604800"

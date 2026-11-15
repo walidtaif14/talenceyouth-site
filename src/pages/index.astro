@@ -1,0 +1,159 @@
+---
+import Base from '../layouts/Base.astro';
+import Photo from '../components/Photo.astro';
+import Galerie from '../components/Galerie.astro';
+import { asso, digiminds, tee, actForInclusion, nombrePaysPartenaires } from '../data/site';
+
+import teeNdsm from '../assets/photos/tee-ndsm.jpg';
+import teeBerlinUe from '../assets/photos/tee-berlin-centre-ue.jpg';
+import teeAmsterdam from '../assets/photos/tee-amsterdam.jpg';
+import teeGroupe from '../assets/photos/tee-groupe-berlin.jpg';
+import norvege1 from '../assets/photos/norvege-1.jpg';
+import norvege2 from '../assets/photos/norvege-2.jpg';
+import roumanie from '../assets/photos/roumanie.jpg';
+import nogaretCroix from '../assets/photos/nogaret-croix.jpg';
+import nogaret2 from '../assets/photos/nogaret-2.jpg';
+
+const jsonld = {
+  '@context': 'https://schema.org',
+  '@type': 'NGO',
+  name: asso.nom,
+  url: 'https://talenceyouth.fr',
+  logo: 'https://talenceyouth.fr/images/logo-192.png',
+  email: asso.email,
+  foundingDate: '2025-03-27',
+  address: { '@type': 'PostalAddress', streetAddress: '16 avenue de Collegno', postalCode: '33400', addressLocality: 'Talence', addressCountry: 'FR' },
+  sameAs: [asso.instagram],
+};
+
+---
+<Base
+  titre="TalenceYouth, ton premier voyage en Europe avec Erasmus+"
+  description="Association de Talence qui monte des projets Erasmus+ pour les 18-30 ans de l'agglomération bordelaise : échanges de jeunes, voyages en train, ateliers. DigiMinds, du 19 au 28 juillet 2027 à Bordeaux : candidatures ouvertes."
+  jsonld={jsonld}
+>
+  <section class="section" aria-labelledby="titre-accueil">
+    <div class="formes" aria-hidden="true">
+      <span class="forme forme--rond" style="width:min(62vw,560px);height:min(62vw,560px);right:-18vw;top:-8vw"></span>
+      <span class="forme forme--rect" style="width:min(44vw,400px);height:min(16vw,140px);right:6%;bottom:-40px;transform:rotate(-8deg)"></span>
+    </div>
+    <div class="conteneur deux-colonnes au-dessus">
+      <div>
+        <h1 id="titre-accueil"><span class="de-travers encre-bleue">Ton premier voyage en Europe, on l'organise avec toi</span></h1>
+        <p class="chapeau" style="margin-top:28px">TalenceYouth est une asso de Talence qui monte des projets Erasmus+ pour les 18-30 ans de l'agglomération bordelaise : échanges de jeunes, voyages en train et ateliers, financés par l'Union européenne et sans frais de participation pour toi.</p>
+        <p style="display:flex;flex-wrap:wrap;gap:12px;margin-top:28px">
+          <a class="bouton" href="/digiminds#candidater">Candidater à DigiMinds</a>
+          <a class="bouton bouton--encre" href="/talence-europe-express">Le voyage de 2026</a>
+        </p>
+      </div>
+      <div style="position:relative">
+        <Photo src={teeNdsm} riso="bleu" prioritaire ratio="4 / 3"
+          alt="Trois jeunes du Talence-Europe Express devant le tag TALENCE YOUTH qu'ils ont peint sur le mur d'expression libre du NDSM, à Amsterdam"
+          legende="Amsterdam, août 2026 : le tag du groupe sur le mur d'expression libre du NDSM." />
+        <p class="etiquette" style="position:absolute;right:-6px;top:-34px;margin:0">DigiMinds<br>19-28<br>juillet 2027</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section--filet" aria-labelledby="titre-en-ce-moment">
+    <div class="conteneur deux-colonnes deux-colonnes--inverse">
+      <div>
+        <h2 id="titre-en-ce-moment">En ce moment</h2>
+      </div>
+      <div class="texte">
+        <h3><a href="/digiminds">DigiMinds, 10 jours sur l'IA et les fake news</a></h3>
+        <p style="margin-top:12px">Du 19 au 28 juillet 2027, {digiminds.personnes} personnes de France, d'Italie, de Turquie, de Pologne et de Lituanie se retrouvent à l'auberge de jeunesse de Blanquefort, juste à côté de Bordeaux, pour comprendre comment marche l'IA, apprendre à repérer les fausses infos et tourner des vidéos ensemble. Le groupe français a {digiminds.groupeFrancais.jeunes} places et les candidatures sont ouvertes.</p>
+        <p><a class="bouton" href="/digiminds">Tout savoir et candidater</a></p>
+        <h3 style="margin-top:44px">{actForInclusion.nom}</h3>
+        <p style="margin-top:12px">En juillet 2027 aussi, un échange autour du théâtre et de l'inclusion, coordonné par {actForInclusion.coordinateur} avec des partenaires de Turquie et d'Italie. TalenceYouth y envoie un groupe de jeunes, les candidatures ouvrent bientôt sur notre <a href={asso.instagram} rel="noopener">Instagram</a>.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section--filet" aria-labelledby="titre-deja-fait">
+    <div class="conteneur">
+      <h2 id="titre-deja-fait"><span class="de-travers">Ce qu'on a déjà fait</span></h2>
+      <div class="deux-colonnes" style="margin-top:36px">
+        <ul class="filets">
+          <li>
+            <h3><a href="/talence-europe-express">{tee.nom}</a></h3>
+            <p style="margin:6px 0 4px"><strong>Août 2026, de Bordeaux à Berlin</strong></p>
+            <p style="margin:0">{tee.jeunes} jeunes de 18 à 21 ans qui n'avaient jamais voyagé sans leurs parents, {tee.accompagnateurs} accompagnateurs, {tee.jours} jours en train à travers {tee.pays} pays et pas un seul avion.</p>
+          </li>
+          <li>
+            <h3>Cultiver le Changement</h3>
+            <p style="margin:6px 0 4px"><strong>Avril 2026, Nogaret (Hérault)</strong></p>
+            <p style="margin:0">20 jeunes, 10 Français et 10 Danois, une semaine au hameau de Nogaret avec nos partenaires d'In Orbita : ateliers écologiques, débats, cuisine végétarienne et nuits sous les étoiles.</p>
+          </li>
+          <li>
+            <h3>Skien, Norvège</h3>
+            <p style="margin:6px 0 4px"><strong>Été 2025</strong></p>
+            <p style="margin:0">Une semaine d'échange chez nos partenaires Creatorium International et TYN : randonnée, accrobranche, camping et baignade dans un lac glacé.</p>
+          </li>
+        </ul>
+        <Photo src={teeGroupe} riso="rose" ratio="4 / 3"
+          alt="Les sept voyageurs du Talence-Europe Express sur un pont à Berlin, le château de Charlottenburg au fond"
+          legende="Berlin, août 2026 : les sept du Talence-Europe Express devant le château de Charlottenburg." />
+      </div>
+    </div>
+  </section>
+
+  <section class="section section--jaune" aria-labelledby="titre-hesites">
+    <div class="conteneur deux-colonnes">
+      <div>
+        <h2 id="titre-hesites"><span class="de-travers">Tu hésites ?</span></h2>
+        <p class="chapeau" style="margin-top:24px">Beaucoup de jeunes pensent qu'Erasmus+ n'est pas pour eux. Voilà ce qu'on nous demande le plus souvent.</p>
+      </div>
+      <div class="questions">
+        <details>
+          <summary>Je n'ai jamais voyagé sans mes parents</summary>
+          <div><p>C'est justement pour ça qu'on existe. En 2026 on est partis en train jusqu'à Berlin avec cinq jeunes qui n'étaient jamais partis seuls, les sept sont rentrés avec des souvenirs et un Youthpass (le certificat européen qui montre ce que tu as appris). Avant chaque départ il y a une réunion de préparation et c'est là que tu peux dire que c'est ta première fois.</p></div>
+        </details>
+        <details>
+          <summary>Je parle mal anglais</summary>
+          <div><p>Pas besoin d'être bilingue : pendant les échanges on parle un anglais simple et on s'aide entre nous. Dans l'équipe on parle aussi français, italien, espagnol et arabe, donc tu ne restes jamais bloqué.</p></div>
+        </details>
+        <details>
+          <summary>Je n'ai pas d'argent</summary>
+          <div><p>Les projets sont payés par Erasmus+, le programme de l'Union européenne. Pour DigiMinds il n'y a pas de frais de participation : l'auberge, les repas et les activités sont pris en charge, l'adhésion à l'asso est gratuite et seuls tes achats perso restent pour toi.</p></div>
+        </details>
+        <details>
+          <summary>Je n'y connais rien en IA</summary>
+          <div><p>On ne cherche pas des codeurs mais des gens curieux. Tu apprends en faisant, avec des jeux, des débats, des ateliers et des vidéos.</p></div>
+        </details>
+        <details>
+          <summary>Je suis parent et j'ai des questions</summary>
+          <div><p>Un chef de groupe de l'asso accompagne le groupe français pendant tout l'échange. Pour DigiMinds les jeunes dorment à l'auberge de jeunesse HI de Blanquefort, dans des chambres de 3 ou 4 avec salle de bain, filles et garçons séparés. Écrivez-nous à <a href={`mailto:${asso.email}`}>{asso.email}</a> et on vous répond.</p></div>
+        </details>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" aria-labelledby="titre-photos">
+    <div class="conteneur">
+      <h2 id="titre-photos"><span class="de-travers">Les photos</span></h2>
+      <Galerie items={[
+        { src: teeBerlinUe, legende: "Berlin, 2026, au centre d'information de la Commission européenne" },
+        { src: teeAmsterdam, legende: 'Amsterdam, 2026, Rembrandtplein' },
+        { src: nogaretCroix, legende: 'Nogaret (Hérault), avril 2026' },
+        { src: nogaret2, legende: 'Nogaret, avril 2026, Cultiver le Changement' },
+        { src: norvege1, legende: 'Norvège, 2025' },
+        { src: norvege2, legende: 'Norvège, 2025' },
+        { src: roumanie, legende: 'Roumanie, 2025' },
+      ]} />
+    </div>
+  </section>
+
+  <section class="section section--filet" aria-labelledby="titre-rejoindre">
+    <div class="conteneur deux-colonnes">
+      <div>
+        <h2 id="titre-rejoindre"><span class="de-travers">Rejoindre l'asso</span></h2>
+      </div>
+      <div class="texte">
+        <p>L'adhésion est gratuite et ouverte à tous les 18-30 ans, étudiants ou non, avec ou sans diplôme. Tu peux aussi donner un coup de main sur un projet sans adhérer.</p>
+        <p><a class="bouton" href={asso.formulaireAdhesion} rel="noopener">Rejoindre TalenceYouth</a></p>
+        <p style="margin-top:36px">On travaille avec des associations de {nombrePaysPartenaires} pays : la France, l'Italie, la Turquie, la Pologne et la Lituanie. Tu es une organisation et tu cherches un partenaire à Bordeaux ? <a href="/partners" hreflang="en">Read our page for partners</a>.</p>
+      </div>
+    </div>
+  </section>
+</Base>

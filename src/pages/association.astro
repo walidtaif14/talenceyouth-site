@@ -1,0 +1,63 @@
+---
+import Base from '../layouts/Base.astro';
+import { asso, bureau, subventions, totalSubventions, euros } from '../data/site';
+---
+<Base
+  titre="L'asso TalenceYouth : qui on est, le bureau, les comptes"
+  description="TalenceYouth, association loi 1901 fondée en mars 2025 à Talence et tenue par cinq bénévoles. Le bureau, les subventions Erasmus+ obtenues et comment adhérer gratuitement."
+>
+  <section class="section" aria-labelledby="titre-asso">
+    <div class="formes" aria-hidden="true">
+      <span class="forme forme--jaune" style="width:min(60vw,540px);height:min(22vw,190px);right:-10vw;top:18%;transform:rotate(-5deg)"></span>
+    </div>
+    <div class="conteneur au-dessus">
+      <h1 id="titre-asso"><span class="de-travers encre-bleue">L'asso</span></h1>
+      <p class="chapeau" style="margin-top:24px;max-width:44ch">TalenceYouth est une association loi 1901 fondée le {asso.fondation} à Talence. Elle est tenue par cinq bénévoles, étudiants en licence et en master.</p>
+    </div>
+  </section>
+
+  <section class="section section--filet" aria-labelledby="titre-bureau">
+    <div class="conteneur deux-colonnes">
+      <h2 id="titre-bureau"><span class="de-travers">Le bureau</span></h2>
+      <ul class="filets">
+        {bureau.map((m) => (
+          <li>
+            <h3>{m.nom}</h3>
+            <p style="margin:4px 0 6px"><strong>{m.role}</strong></p>
+            <p style="margin:0">{m.bio} Langues : {m.langues}.</p>
+          </li>
+        ))}
+      </ul>
+    </div>
+  </section>
+
+  <section class="section section--jaune" aria-labelledby="titre-argent">
+    <div class="conteneur deux-colonnes">
+      <h2 id="titre-argent"><span class="de-travers">D'où vient l'argent</span></h2>
+      <div class="texte">
+        <p>Nos projets sont financés par Erasmus+, le programme de l'Union européenne pour la jeunesse, à travers l'Agence Erasmus+ France Jeunesse &amp; Sport. Depuis 2025 on a obtenu {euros(totalSubventions)} :</p>
+        <dl class="faits">
+          <dt>DigiMinds</dt><dd>{euros(subventions.digiminds)}, échange de jeunes de juillet 2027</dd>
+          <dt>Talence-Europe Express</dt><dd>{euros(subventions.tee)}, voyage DiscoverEU d'août 2026</dd>
+        </dl>
+        <p style="margin-top:20px">Cet argent paie les voyages, l'hébergement, les repas et les activités des participants. Chaque projet se termine par un rapport final à l'Agence, qui contrôle ce qui a été réalisé.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section--filet" aria-labelledby="titre-adherer">
+    <div class="conteneur deux-colonnes">
+      <h2 id="titre-adherer"><span class="de-travers">Adhérer</span></h2>
+      <div class="texte">
+        <p>L'adhésion est gratuite et ouverte à tous les 18-30 ans. Tu peux aussi aider sur un projet sans adhérer.</p>
+        <p><a class="bouton" href={asso.formulaireAdhesion} rel="noopener">Rejoindre TalenceYouth</a></p>
+        <dl class="faits" style="margin-top:36px">
+          <dt>Siège</dt><dd>{asso.adresse}</dd>
+          <dt>SIREN</dt><dd>{asso.siren}</dd>
+          <dt>OID Erasmus+</dt><dd>{asso.oid}</dd>
+          <dt>Contact</dt><dd><a href={`mailto:${asso.email}`}>{asso.email}</a></dd>
+        </dl>
+      </div>
+    </div>
+  </section>
+</Base>

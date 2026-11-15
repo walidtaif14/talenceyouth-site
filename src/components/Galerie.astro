@@ -1,0 +1,49 @@
+---
+// Galerie de vignettes (liens vers la grande photo, donc utilisable sans JavaScript) ; un clic ouvre la photo entière dans une fenêtre <dialog> (clavier et Échap gérés par le navigateur).
+import type { ImageMetadata } from 'astro';
+import { getImage } from 'astro:assets';
+
+interface Item { src: ImageMetadata; legende: string; }
+interface Props { items: Item[]; lang?: 'fr' | 'en'; }
+const { items, lang = 'fr' } = Astro.props;
+
+const photos = await Promise.all(items.map(async (it) => {
+  const vignette = await getImage({ src: it.src, width: 640, format: 'webp' });
+  const grande = await getImage({ src: it.src, width: Math.min(1600, it.src.width), format: 'webp' });
+  return { ...it, vignette: vignette.src, grande: grande.src };
+}));
+const fermer = lang === 'fr' ? 'Fermer' : 'Close';
+---
+<div class="galerie">
+  {photos.map((p) => (
+    <a href={p.grande} data-legende={p.legende} aria-haspopup="dialog">
+      <img src={p.vignette} alt="" loading="lazy" decoding="async" width="640" height="800">
+      <span>{p.legende}</span>
+    </a>
+  ))}
+</div>
+<dialog class="visionneuse" aria-label={lang === 'fr' ? 'Photo agrandie' : 'Enlarged photo'}>
+  <button type="button" data-fermer>{fermer}</button>
+  <img alt="">
+  <p></p>
+</dialog>
+
+<script>
+  const dlg = document.querySelector<HTMLDialogElement>('dialog.visionneuse');
+  if (dlg && typeof dlg.showModal === 'function') {
+    const img = dlg.querySelector('img')!;
+    const legende = dlg.querySelector('p')!;
+    document.querySelectorAll<HTMLAnchorElement>('.galerie a').forEach((b) => {
+      b.addEventListener('click', (e) => {
+        e.preventDefault();
+        img.src = b.href;
+        img.alt = b.dataset.legende || '';
+        legende.textContent = b.dataset.legende || '';
+        dlg.showModal();
+      });
+    });
+    dlg.querySelector('[data-fermer]')!.addEventListener('click', () => dlg.close());
+    dlg.addEventListener('click', (e) => { if (e.target === dlg) dlg.close(); });
+    dlg.addEventListener('close', () => img.removeAttribute('src'));
+  }
+</script>

@@ -1,0 +1,95 @@
+---
+import Base from '../layouts/Base.astro';
+import Photo from '../components/Photo.astro';
+import Galerie from '../components/Galerie.astro';
+import { tee as t, clauseUE } from '../data/site';
+import teeGroupe from '../assets/photos/tee-groupe-berlin.jpg';
+import teeNdsm from '../assets/photos/tee-ndsm.jpg';
+import teeBerlinUe from '../assets/photos/tee-berlin-centre-ue.jpg';
+import teeAmsterdam from '../assets/photos/tee-amsterdam.jpg';
+---
+<Base
+  titre="Talence-Europe Express, 11 jours en train de Bordeaux à Berlin"
+  description="En août 2026, cinq jeunes de 18 à 21 ans qui n'avaient jamais voyagé sans leurs parents sont partis 11 jours en train jusqu'à Berlin avec TalenceYouth et DiscoverEU. Ce qu'ils ont fait et ce qu'ils en ont retiré."
+>
+  <section class="section" aria-labelledby="titre-tee">
+    <div class="formes" aria-hidden="true">
+      <span class="forme forme--rect" style="width:min(70vw,640px);height:min(18vw,150px);right:-24vw;bottom:-30px;transform:rotate(-6deg)"></span>
+      <span class="forme forme--rond" style="width:min(30vw,260px);height:min(30vw,260px);left:-14vw;top:-6vw"></span>
+    </div>
+    <div class="conteneur deux-colonnes au-dessus">
+      <div>
+        <h1 id="titre-tee"><span class="de-travers encre-bleue">Talence-Europe Express</span></h1>
+        <p class="chapeau" style="margin-top:24px">Cinq jeunes de 18 à 21 ans qui n'avaient jamais voyagé sans leurs parents, deux accompagnateurs, onze jours en train de Bordeaux à Berlin et pas un seul avion.</p>
+      </div>
+      <Photo src={teeGroupe} riso="bleu" prioritaire ratio="4 / 3"
+        alt="Les sept voyageurs du Talence-Europe Express sur un pont à Berlin, le château de Charlottenburg au fond"
+        legende="Berlin, août 2026, devant le château de Charlottenburg." />
+    </div>
+  </section>
+
+  <section class="section section--filet" aria-labelledby="titre-voyage">
+    <div class="conteneur deux-colonnes">
+      <h2 id="titre-voyage"><span class="de-travers">Le voyage</span></h2>
+      <dl class="faits">
+        <dt>Quand</dt><dd>Du 10 au 20 août 2026, 11 jours.</dd>
+        <dt>Qui</dt><dd>7 personnes : {t.jeunes} jeunes de 18 à 21 ans de l'agglomération bordelaise et {t.accompagnateurs} accompagnateurs.</dd>
+        <dt>Comment</dt><dd>Tout en train, avec 7 Pass Interrail DiscoverEU sur l'appli du téléphone.</dd>
+        <dt>Le trajet</dt><dd>Bordeaux, Paris, Bruxelles, Leyde, Noordwijk aux Pays-Bas, Amsterdam, Berlin, puis retour à Bordeaux. Deux sorties en plus, à Leyde et à Zaandam.</dd>
+        <dt>Le cadre</dt><dd>{t.action}, sans un euro à avancer pour les jeunes.</dd>
+      </dl>
+    </div>
+  </section>
+
+  <section class="section section--filet" aria-labelledby="titre-fait">
+    <div class="conteneur">
+      <h2 id="titre-fait"><span class="de-travers">Ce qu'ils ont fait</span></h2>
+      <div class="deux-colonnes" style="margin-top:32px">
+        <ul class="filets">
+          <li><b>Découvrir les villes</b>À pied et en transports locaux, en se repérant à partir de la gare.</li>
+          <li><b>Comprendre l'histoire de l'Europe</b>La Neue Wache, le mémorial aux Juifs d'Europe assassinés, le Raum der Stille et le musée du Mur à Berlin.</li>
+          <li><b>Voir l'Europe de près</b>Le centre d'information de la Commission européenne à Berlin et ses activités.</li>
+          <li><b>Créer</b>Le Moco Museum, le parcours IKONO et le tag du groupe sur le mur d'expression libre du NDSM, à Amsterdam.</li>
+          <li><b>Vivre ensemble</b>Les repas préparés à l'auberge, le budget de chaque jour décidé en groupe et un bilan Youthpass à la fin.</li>
+        </ul>
+        <div class="texte">
+          <h3>Un programme construit avec eux</h3>
+          <p style="margin-top:12px">Le programme a bougé à leur demande. Une participante a préparé et mené seule la journée du 14 août à Amsterdam, puis elle a fait ajouter le château de Charlottenburg à Berlin. Un participant a demandé le musée Volkswagen. Et quand deux participantes ont préféré la ville à une matinée de plage, on a suivi.</p>
+          <Photo src={teeNdsm} riso="rose" ratio="4 / 3" sizes="(min-width: 860px) 480px, 100vw" largeurs={[480, 960]}
+            alt="Trois jeunes du groupe devant le tag TALENCE YOUTH qu'ils ont peint au NDSM, à Amsterdam"
+            legende="Amsterdam, le tag du groupe au NDSM." />
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section--jaune" aria-labelledby="titre-retire">
+    <div class="conteneur deux-colonnes">
+      <h2 id="titre-retire"><span class="de-travers">Ce qu'ils en ont retiré</span></h2>
+      <ul class="filets">
+        <li><b>7 partis, 7 rentrés</b>Aucun abandon, aucun souci de sécurité, aucune dépense de santé.</li>
+        <li><b>Un Youthpass chacun</b>Le certificat européen de leurs compétences, écrit à partir de leurs propres réponses et relu par chacun.</li>
+        <li><b>Savoir voyager seul</b>Le pass n'existait que dans l'appli, donc chaque trajet passait par eux : enregistrer le voyage et lire les horaires. Tous savent maintenant faire un trajet international en train.</li>
+        <li><b>Se débrouiller sans langue commune</b>Quelques mots de néerlandais appris tout seuls et un match de foot avec des gens du coin.</li>
+        <li><b>Gérer les imprévus</b>Un retour réorganisé par la compagnie de train, réglé sans frais ni retard. Deux participantes montées dans le mauvais train à Duisburg, qui ont rejoint le groupe à la gare suivante.</li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="section" aria-labelledby="titre-photos-tee">
+    <div class="conteneur">
+      <h2 id="titre-photos-tee"><span class="de-travers">En photos</span></h2>
+      <Galerie items={[
+        { src: teeBerlinUe, legende: "Berlin, au centre d'information de la Commission européenne" },
+        { src: teeAmsterdam, legende: 'Amsterdam, Rembrandtplein' },
+      ]} />
+      <p class="texte" style="margin-top:40px">Envie de partir à ton tour ? Le prochain projet, c'est <a href="/digiminds">DigiMinds, en juillet 2027 à Bordeaux</a>.</p>
+    </div>
+  </section>
+
+  <section class="section section--filet">
+    <div class="conteneur texte">
+      <p class="legende">Projet Erasmus+ n° {t.reference}. {clauseUE.fr}</p>
+    </div>
+  </section>
+</Base>

@@ -1,0 +1,109 @@
+---
+import '../styles/global.css';
+import { asso, clauseUE } from '../data/site';
+
+interface Props {
+  titre: string;
+  description: string;
+  lang?: 'fr' | 'en';
+  jsonld?: Record<string, unknown>;
+}
+const { titre, description, lang = 'fr', jsonld } = Astro.props;
+const fr = lang === 'fr';
+const canonique = new URL(Astro.url.pathname.replace(/\.html$/, '').replace(/\/index$/, '/'), Astro.site).href;
+const chemin = Astro.url.pathname.replace(/\.html$/, '');
+const actif = (href: string) => (chemin === href || (href !== '/' && chemin.startsWith(href)) ? 'page' : undefined);
+
+const nav = fr
+  ? [
+      { href: '/digiminds', texte: 'DigiMinds 2027' },
+      { href: '/talence-europe-express', texte: 'Le voyage de 2026' },
+      { href: '/association', texte: "L'asso" },
+      { href: '/partners', texte: 'Partners (EN)', lang: 'en' },
+    ]
+  : [
+      { href: '/', texte: 'Accueil (FR)', lang: 'fr' },
+      { href: '/digiminds', texte: 'DigiMinds (FR)', lang: 'fr' },
+      { href: '/partners', texte: 'For partners' },
+    ];
+---
+<!doctype html>
+<html lang={lang}>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{titre}</title>
+  <meta name="description" content={description}>
+  <link rel="canonical" href={canonique}>
+  <meta name="theme-color" content="#f6f6f2">
+  <link rel="icon" type="image/png" href="/images/logo-192.png">
+  <link rel="apple-touch-icon" href="/images/apple-touch-icon.png">
+  <link rel="preload" href="/fonts/bricolage-latin.woff2" as="font" type="font/woff2" crossorigin>
+  <meta property="og:type" content="website">
+  <meta property="og:locale" content={fr ? 'fr_FR' : 'en_GB'}>
+  <meta property="og:url" content={canonique}>
+  <meta property="og:title" content={titre}>
+  <meta property="og:description" content={description}>
+  <meta property="og:image" content="https://talenceyouth.fr/images/partage.jpg">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content={fr ? 'Trois jeunes devant le tag TALENCE YOUTH peint sur un mur d’Amsterdam' : 'Three young people in front of a TALENCE YOUTH tag painted on a wall in Amsterdam'}>
+  <meta name="twitter:card" content="summary_large_image">
+  {jsonld && <script type="application/ld+json" set:html={JSON.stringify(jsonld)} />}
+</head>
+<body>
+  <a class="lien-evitement" href="#contenu">{fr ? 'Aller au contenu' : 'Skip to content'}</a>
+  <header class="entete">
+    <div class="conteneur entete__ligne">
+      <a class="marque" href="/" aria-label={fr ? 'TalenceYouth, accueil' : 'TalenceYouth, home page in French'}>
+        <img src="/images/logo-96.png" width="36" height="36" alt="">
+        <span>TalenceYouth</span>
+      </a>
+      <nav class="nav" aria-label={fr ? 'Navigation principale' : 'Main navigation'}>
+        {nav.map((l) => (
+          <a href={l.href} aria-current={actif(l.href)} hreflang={l.lang} lang={l.lang}>{l.texte}</a>
+        ))}
+        {fr && <a class="bouton" href="/digiminds#candidater">Candidater</a>}
+      </nav>
+    </div>
+  </header>
+
+  <main id="contenu">
+    <slot />
+  </main>
+
+  <footer class="pied">
+    <div class="conteneur">
+      <div class="pied__grille">
+        <div>
+          <h2>TalenceYouth</h2>
+          <p>{fr
+            ? `${asso.forme}, fondée le ${asso.fondation}. ${asso.adresse}.`
+            : `Non-profit association under the French law of 1901, founded on 27 March 2025. ${asso.adresse}, France.`}</p>
+          <p>SIREN {asso.siren}<br>OID Erasmus+ {asso.oid}</p>
+        </div>
+        <div>
+          <h2>{fr ? 'Nous écrire' : 'Contact'}</h2>
+          <ul>
+            <li><a href={`mailto:${asso.email}`}>{asso.email}</a></li>
+            <li><a href={asso.instagram} rel="noopener">Instagram {asso.instagramNom}</a></li>
+            <li><a href="/mentions-legales" lang="fr">Mentions légales</a></li>
+            <li><a href="/politique-confidentialite" lang="fr">Politique de confidentialité</a></li>
+          </ul>
+        </div>
+        <div>
+          <h2>{fr ? 'Financement' : 'Funding'}</h2>
+          <div class="ue">
+            <img src={fr ? '/images/embleme-ue.png' : '/images/embleme-ue-en.png'} width="600" height={fr ? 135 : 134} alt={fr ? "Financé par l'Union européenne" : 'Funded by the European Union'} loading="lazy" decoding="async">
+          </div>
+          <p class="clause">{fr ? clauseUE.fr : clauseUE.en}</p>
+        </div>
+      </div>
+      <div class="pied__bas">
+        <span>© 2026 TalenceYouth, Talence</span>
+        <span>{fr ? 'Site sans cookie ni mesure d’audience' : 'No cookies, no tracking'}</span>
+      </div>
+    </div>
+  </footer>
+</body>
+</html>

@@ -1,0 +1,196 @@
+---
+import Base from '../layouts/Base.astro';
+import Photo from '../components/Photo.astro';
+import { asso, digiminds as d, clauseUE } from '../data/site';
+import bordeaux from '../assets/photos/bordeaux-toits.jpg';
+import forteresse from '../assets/photos/blanquefort-forteresse.jpg';
+
+const programme = [
+  { jour: 'Lun. 19', matin: 'Arrivée et installation', apres: 'Dîner de bienvenue et jeux pour retenir les prénoms' },
+  { jour: 'Mar. 20', matin: 'Jeux pour former les équipes et Mission Impossible', apres: 'Règles de vie, craintes et attentes' },
+  { jour: 'Mer. 21', matin: "Atelier : c'est quoi l'IA ? Son histoire", apres: 'Débat « peur ou opportunité », premiers pas avec les outils' },
+  { jour: 'Jeu. 22', matin: 'Jeu de simulation : The Troll Factory', apres: 'Atelier : les outils pour vérifier une info' },
+  { jour: 'Ven. 23', matin: 'Atelier : reconnaître un deepfake', apres: 'Bilan de mi-parcours' },
+  { jour: 'Sam. 24', matin: 'Bordeaux Day : jeu photo et défis en équipes mixtes dans toute la ville', apres: '', fort: true },
+  { jour: 'Dim. 25', matin: 'Écriture des scénarios et tournage des vidéos', apres: 'Écriture du Manifeste numérique' },
+  { jour: 'Lun. 26', matin: 'Montage des vidéos, fin du Manifeste', apres: 'Présentation de nos résultats' },
+  { jour: 'Mar. 27', matin: 'Préparation des ateliers locaux, bilan final, auto-évaluation Youthpass', apres: 'Remise des Youthpass et soirée de départ' },
+  { jour: 'Mer. 28', matin: "Mur d'évaluation, cercle d'au revoir et départ", apres: '' },
+];
+
+const partenairesDm = [
+  { pays: 'France', nom: 'TalenceYouth', ville: 'Talence', role: 'coordonne et accueille' },
+  { pays: 'Italie', nom: 'Associazione SINGA', ville: 'Corigliano-Rossano, Calabre', role: "anime les ateliers techniques sur l'IA" },
+  { pays: 'Turquie', nom: 'Antalya Erasmus Sports Club', ville: 'Antalya', role: "travaille sur l'humain face à l'IA et le dialogue interculturel" },
+  { pays: 'Pologne', nom: 'Stowarzyszenie ŻYJ KOLOROWO!', ville: 'Wrocław', role: 'prépare les jeux pour se lancer et souder les équipes' },
+  { pays: 'Lituanie', nom: 'Linkuva Youth & Children Centre', ville: 'Linkuva', role: "porte l'inclusion des jeunes des zones rurales" },
+];
+---
+<Base
+  titre="DigiMinds, échange Erasmus+ sur l'IA à Bordeaux, juillet 2027"
+  description="Du 19 au 28 juillet 2027 à Blanquefort, près de Bordeaux : 10 jours pour comprendre l'IA et repérer les fake news avec des jeunes de 5 pays. 6 places pour le groupe français, sans frais de participation. Candidatures ouvertes."
+>
+  <section class="section" aria-labelledby="titre-dm">
+    <div class="formes" aria-hidden="true">
+      <span class="forme forme--rond" style="width:min(56vw,500px);height:min(56vw,500px);left:-16vw;top:-10vw"></span>
+      <span class="forme forme--jaune" style="width:min(40vw,360px);height:min(16vw,140px);right:-6vw;bottom:10%;transform:rotate(6deg)"></span>
+    </div>
+    <div class="conteneur deux-colonnes au-dessus">
+      <div>
+        <h1 id="titre-dm"><span class="de-travers encre-bleue">DigiMinds</span></h1>
+        <p class="chapeau" style="margin-top:24px">10 jours à Bordeaux pour comprendre comment marche l'IA, ne plus se faire avoir par les fake news et créer des vidéos avec des jeunes de 5 pays.</p>
+        <p style="display:flex;flex-wrap:wrap;gap:12px;align-items:center;margin-top:24px">
+          <a class="bouton" href="#candidater">Candidater</a>
+          <span><strong>Du 19 au 28 juillet 2027</strong></span>
+        </p>
+        <div class="ue" style="margin-top:20px"><img src="/images/embleme-ue.png" width="600" height="135" alt="Financé par l'Union européenne"></div>
+      </div>
+      <div style="position:relative">
+        <Photo src={bordeaux} riso="bleu" prioritaire ratio="3 / 2" alt="Les toits du vieux Bordeaux vus depuis la porte Cailhau" />
+        <p class="etiquette" style="position:absolute;left:-14px;bottom:-40px;margin:0">Bordeaux<br>Day<br>sam. 24.07</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section--filet" aria-labelledby="titre-minute">
+    <div class="conteneur deux-colonnes">
+      <h2 id="titre-minute"><span class="de-travers">L'échange en une minute</span></h2>
+      <dl class="faits">
+        <dt>Quand</dt><dd>Du lundi 19 au mercredi 28 juillet 2027, 10 jours.</dd>
+        <dt>Où</dt><dd>À {d.lieu}. Depuis Bordeaux Saint-Jean, le train s'arrête à la gare de Blanquefort, à 12 minutes à pied.</dd>
+        <dt>Qui</dt><dd>{d.personnes} personnes de 5 pays : {d.participants} participants, {d.chefsDeGroupe} chefs de groupe et 1 animateur.</dd>
+        <dt>Le groupe français</dt><dd>{d.groupeFrancais.jeunes} jeunes et un chef de groupe de l'asso. Au moins {d.groupeFrancais.moinsOpportunites} des {d.groupeFrancais.jeunes} places vont à des jeunes qui ont moins d'occasions de partir.</dd>
+        <dt>Âge</dt><dd>De {d.age}.</dd>
+        <dt>Langue</dt><dd>Un anglais simple et on s'aide dans les groupes.</dd>
+        <dt>Ce que ça coûte</dt><dd>Pas de frais de participation : l'auberge, les repas et les activités sont pris en charge par Erasmus+. Tes achats perso restent pour toi.</dd>
+        <dt>Tu repars avec</dt><dd>Un Youthpass (le certificat européen de tes compétences, à mettre sur ton CV), des compétences numériques et des amis de 5 pays.</dd>
+      </dl>
+    </div>
+  </section>
+
+  <section class="section section--filet" aria-labelledby="titre-apprendre">
+    <div class="conteneur">
+      <h2 id="titre-apprendre"><span class="de-travers">Ce que tu vas apprendre</span></h2>
+      <div class="deux-colonnes" style="margin-top:32px">
+        <ul class="filets">
+          <li><b>Parler à une IA</b>Écrire de bonnes consignes pour obtenir ce que tu veux.</li>
+          <li><b>Vérifier une info</b>Avec la recherche d'image inversée de Google et InVID.</li>
+          <li><b>Comprendre les algorithmes</b>Comment ils marchent et pourquoi l'IA invente parfois des choses.</li>
+          <li><b>Protéger ta vie privée</b>Ton empreinte numérique et tes droits.</li>
+          <li><b>Parler en public</b>Débattre, travailler en équipe internationale, oser parler anglais.</li>
+        </ul>
+        <div class="texte">
+          <h3>Ce qu'on va créer ensemble</h3>
+          <p style="margin-top:12px">Le Youth Digital Manifesto, 5 conseils pour survivre à l'ère de l'IA, des vidéos de sensibilisation aux deepfakes que vous tournez vous-mêmes et une présentation publique des résultats.</p>
+          <h3 style="margin-top:32px">Pas de cours magistral</h3>
+          <p style="margin-top:12px">Tu apprends en faisant. Dans The Troll Factory, un jeu de simulation, tu fabriques de fausses infos pour comprendre comment elles marchent. Il y aura aussi des débats en World Café, des ateliers sur tablettes et ordis, des soirées interculturelles où chaque pays partage sa cuisine et sa musique, plus des moments sans écran.</p>
+          <Photo src={forteresse} riso="rose" ratio="3 / 2" sizes="(min-width: 860px) 480px, 100vw" largeurs={[480, 960]} alt="La forteresse médiévale de Blanquefort" legende="La forteresse de Blanquefort, à côté de l'auberge." classe="" />
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section--filet" aria-labelledby="titre-programme">
+    <div class="conteneur">
+      <h2 id="titre-programme"><span class="de-travers">Le programme</span></h2>
+      <div style="overflow-x:auto;margin-top:28px">
+        <table class="programme">
+          <thead><tr><th scope="col">Jour</th><th scope="col">Matin</th><th scope="col">Après-midi et soir</th></tr></thead>
+          <tbody>
+            {programme.map((p) => (
+              <tr class={p.fort ? 'temps-fort' : undefined}>
+                <th scope="row">{p.jour}</th>
+                <td colspan={p.apres ? undefined : 2}>{p.matin}</td>
+                {p.apres && <td>{p.apres}</td>}
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+      <p class="texte" style="margin-top:20px">Chaque soir, 30 minutes en petit groupe mixte pour parler de ta journée. Les chefs de groupe fixent le programme final à la visite préparatoire d'avril 2027.</p>
+    </div>
+  </section>
+
+  <section class="section section--jaune" aria-labelledby="titre-attentes">
+    <div class="conteneur deux-colonnes">
+      <h2 id="titre-attentes"><span class="de-travers">Ce qu'on attend de toi</span></h2>
+      <ul class="filets">
+        <li>Être là aux 10 jours, à toutes les activités, du premier jour au dernier.</li>
+        <li>Venir à la réunion de préparation et faire une petite recherche sur l'IA et les fake news en France, avec un vrai exemple de fausse info qui a circulé.</li>
+        <li>Aider le groupe à animer une activité près de chez toi dans les 2 mois après l'échange.</li>
+        <li>Raconter ce que tu as vécu dans au moins un post ou une story sur tes réseaux.</li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="section section--filet" aria-labelledby="titre-dates">
+    <div class="conteneur deux-colonnes">
+      <h2 id="titre-dates"><span class="de-travers">Les dates</span></h2>
+      <dl class="faits">
+        <dt>Maintenant</dt><dd>Les candidatures du groupe français sont ouvertes.</dd>
+        <dt>Avant le 31 mai 2027</dt><dd>On arrête la liste des participants.</dd>
+        <dt>À partir du 21 juin 2027</dt><dd>Le groupe en ligne ouvre et on se retrouve pour la réunion de préparation.</dd>
+        <dt>19-28 juillet 2027</dt><dd>L'échange.</dd>
+      </dl>
+    </div>
+  </section>
+
+  <section class="section section--filet" aria-labelledby="titre-partenaires-dm">
+    <div class="conteneur deux-colonnes">
+      <h2 id="titre-partenaires-dm"><span class="de-travers">5 associations, 5 pays</span></h2>
+      <ul class="filets">
+        {partenairesDm.map((p) => (
+          <li><b>{p.nom}</b>{p.pays}, {p.ville} : {p.role}.</li>
+        ))}
+      </ul>
+    </div>
+  </section>
+
+  <section id="candidater" class="section section--bleu" aria-labelledby="titre-candidater">
+    <div class="conteneur deux-colonnes">
+      <div>
+        <h2 id="titre-candidater"><span class="de-travers">Candidater</span></h2>
+      </div>
+      <div class="texte">
+        <p>Tu as entre 18 et 30 ans le 19 juillet 2027, tu vis en France et tu peux rester les 10 jours ? Remplis le formulaire, ça prend quelques minutes. Si tu as besoin d'un aménagement (santé, régime alimentaire, accessibilité), dis-le dedans : on s'organise.</p>
+        <p><a class="bouton" href={d.formulaire} rel="noopener">Remplir le formulaire</a></p>
+        <p>Une question avant de candidater ? Écris-nous sur <a href={asso.instagram} rel="noopener">Instagram</a> ou à <a href={`mailto:${asso.email}`}>{asso.email}</a>.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" aria-labelledby="titre-faq">
+    <div class="conteneur deux-colonnes">
+      <h2 id="titre-faq"><span class="de-travers">Questions</span></h2>
+      <div class="questions">
+        <details>
+          <summary>Je n'ai jamais quitté la France, c'est grave ?</summary>
+          <div><p>Pas du tout, d'ailleurs l'échange a lieu à Bordeaux. Dis-le à la réunion de préparation, c'est fait pour ça.</p></div>
+        </details>
+        <details>
+          <summary>Il faut savoir coder ?</summary>
+          <div><p>Non. On cherche des gens curieux qui veulent comprendre ce qui se passe avec l'IA et le partager.</p></div>
+        </details>
+        <details>
+          <summary>Halal, végétarien, allergie : comment ça se passe ?</summary>
+          <div><p>Dis-le-nous à l'avance, c'est prévu : végétarien, halal, sans porc ou allergies.</p></div>
+        </details>
+        <details>
+          <summary>Je peux venir seulement quelques jours ?</summary>
+          <div><p>Non, il faut pouvoir rester les 10 jours et participer à toutes les activités, c'est une condition pour partir.</p></div>
+        </details>
+        <details>
+          <summary>Où on dort ?</summary>
+          <div><p>À l'auberge de jeunesse HI de Blanquefort, dans des chambres de 3 ou 4 avec salle de bain, filles et garçons séparés. Il y a le Wi-Fi, une laverie et un jardin. Pense à ta serviette. Petit-déjeuner, panier-repas à midi et dîner chaud le soir.</p></div>
+        </details>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section--filet">
+    <div class="conteneur texte">
+      <p class="legende">Projet Erasmus+ n° {d.reference}. {clauseUE.fr}</p>
+      <p class="legende">Photos de Wikimedia Commons, recadrées et passées en deux couleurs : toits de Bordeaux par Zairon (CC BY-SA 4.0), forteresse de Blanquefort par Joel Camelot (CC BY 3.0).</p>
+    </div>
+  </section>
+</Base>
