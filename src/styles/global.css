@@ -447,3 +447,19 @@ button { font-family: inherit; }
   header nav.ty-nav-mobile::-webkit-scrollbar { display: none; }
   header > div { flex-wrap: wrap !important; }
 }
+
+/* Menu mobile : tout tient sur une ligne (l'accueil reste accessible par le logo) */
+@media (max-width: 768px) {
+  header nav.ty-nav-mobile { gap: 14px !important; }
+  header nav.ty-nav-mobile a { font-size: 14px !important; }
+  header nav.ty-nav-mobile a[href="/"]:not([lang]) { display: none; }
+}
+
+/* Finitions du 15/11 : rangées équilibrées, questions non étirées, étiquettes lisibles sur le fond crème */
+.ty-faq { align-content: start; }
+.ty-cards--3 { grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); }
+.ty-cards--flex { display: flex; flex-wrap: wrap; gap: 22px; }
+.ty-cards--flex > * { flex: 1 1 300px; }
+.ty-team-grid { display: flex; flex-wrap: wrap; justify-content: center; gap: 22px; }
+.ty-team-grid > * { flex: 0 1 360px; }
+.ty-chip--blanc { background: #fff; border: 1px solid #e7e3dd; }

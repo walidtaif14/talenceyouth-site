@@ -35,7 +35,7 @@ const resultats = [
         <h1 class="ty-h1">Talence-Europe Express</h1>
         <p class="ty-lead">Cinq jeunes de 18 à 21 ans qui n'avaient jamais voyagé sans leurs parents, deux accompagnateurs, onze jours en train de Bordeaux à Berlin et pas un seul avion.</p>
         <div class="ty-chips">
-          <span class="ty-chip">7 voyageurs</span><span class="ty-chip">{t.pays} pays</span><span class="ty-chip">0 avion</span><span class="ty-chip">DiscoverEU</span>
+          <span class="ty-chip ty-chip--blanc">7 voyageurs</span><span class="ty-chip ty-chip--blanc">{t.pays} pays</span><span class="ty-chip ty-chip--blanc">0 avion</span><span class="ty-chip ty-chip--blanc">DiscoverEU</span>
         </div>
       </div>
       <div style="position:relative;">
@@ -81,7 +81,7 @@ const resultats = [
         <h2 class="ty-h2" data-reveal>Ce qu'ils ont fait</h2>
       </div>
     </div>
-    <div class="ty-cards">
+    <div class="ty-cards--flex">
       {activites.map((a) => <article class="ty-card ty-point" data-reveal><h3>{a.t}</h3><p>{a.p}</p></article>)}
     </div>
   </section>
@@ -89,7 +89,7 @@ const resultats = [
   <section class="ty-section">
     <div class="ty-split">
       <div class="ty-photo-card" data-reveal>
-        <Photo src={teeNdsm} alt="Trois jeunes du groupe devant le tag TALENCE YOUTH qu'ils ont peint au NDSM, à Amsterdam" style="aspect-ratio:4/3;object-fit:cover;" />
+        <Photo src={teeAmsterdam} alt="Le groupe du Talence-Europe Express à Amsterdam, sur la Rembrandtplein" style="aspect-ratio:4/3;object-fit:cover;object-position:50% 85%;" />
       </div>
       <div>
         <span class="ty-eyebrow" data-reveal>Un programme construit avec eux</span>
@@ -109,7 +109,7 @@ const resultats = [
         <h2 class="ty-h2" data-reveal>Ce qu'ils en ont retiré</h2>
       </div>
     </div>
-    <div class="ty-cards">
+    <div class="ty-cards--flex">
       {resultats.map((r) => <article class="ty-card ty-point" data-reveal><h3>{r.t}</h3><p>{r.p}</p></article>)}
     </div>
   </section>
@@ -122,10 +122,9 @@ const resultats = [
       </div>
       <span class="ty-muted" data-reveal>Cliquez pour agrandir</span>
     </div>
-    <Galerie items={[
+    <Galerie colonnes={300} items={[
       { src: teeNdsm, legende: 'Amsterdam, le tag du groupe au NDSM', large: true },
       { src: teeBerlinUe, legende: "Berlin, au centre d'information de la Commission européenne" },
-      { src: teeAmsterdam, legende: 'Amsterdam, Rembrandtplein' },
     ]} />
   </section>
 

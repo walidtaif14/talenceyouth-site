@@ -99,7 +99,7 @@ const partenairesDm = [
       </div>
       <span class="ty-muted" data-reveal style="max-width:420px;">Dans The Troll Factory, un jeu de simulation, vous fabriquez de fausses informations pour comprendre comment elles circulent.</span>
     </div>
-    <div class="ty-cards">
+    <div class="ty-cards ty-cards--3">
       {apprendre.map((a) => (
         <article class="ty-card ty-point" data-reveal><h3>{a.t}</h3><p>{a.p}</p></article>
       ))}
@@ -176,7 +176,7 @@ const partenairesDm = [
     <div class="ty-card" data-reveal style="border-radius:28px;padding:clamp(24px,3.5vw,44px);">
       <span class="ty-eyebrow">Les partenaires</span>
       <h2 class="ty-h2" style="margin-bottom:22px;">5 associations, 5 pays</h2>
-      <div class="ty-cards" style="gap:14px;">
+      <div class="ty-cards--flex" style="gap:14px;">
         {partenairesDm.map((p) => (
           <div style="background:#f6f4f1;border:1px solid #ece9e4;border-radius:16px;padding:16px 18px;">
             <div style="font-size:12px;font-weight:600;color:var(--accent);">{p.pays}</div>

@@ -28,7 +28,7 @@ const bureau = [
         </div>
       </div>
       <div class="ty-photo-card">
-        <Photo src={teeBerlinUe} prioritaire alt="Des jeunes du Talence-Europe Express avec un drapeau européen au centre d'information de la Commission européenne, à Berlin" style="aspect-ratio:4/3;object-fit:cover;" />
+        <Photo src={teeBerlinUe} prioritaire alt="Des jeunes du Talence-Europe Express avec un drapeau européen au centre d'information de la Commission européenne, à Berlin" style="aspect-ratio:4/3;object-fit:cover;object-position:50% 12%;" />
       </div>
     </div>
   </section>
@@ -41,7 +41,7 @@ const bureau = [
       </div>
       <span class="ty-muted" data-reveal style="max-width:380px;">Le bureau élu par l'assemblée générale. Tous bénévoles.</span>
     </div>
-    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:22px;">
+    <div class="ty-team-grid">
       {bureau.map((m) => (
         <article data-reveal class="ty-team-card">
           <div style="display:flex;align-items:center;gap:16px;"><div class={`ty-avatar ${m.c}`} aria-hidden="true">{m.init}</div><div><h3 class="ty-team-name">{m.nom}</h3><p class="ty-team-role">{m.role}</p></div></div>
